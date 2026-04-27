@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import SEO from '../components/SEO';
+import { trigger_automation_email } from '../lib/emailService';
 
 const Contact = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
@@ -26,11 +27,22 @@ const Contact = () => {
     setFormState('submitting');
     
     try {
-      // Mailing protocol temporarily disabled for later configuration
-      console.log('Inquiry Data Captured:', formData);
-      
-      // Simulate network delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const result = await trigger_automation_email(
+        'contact@vanguardtechops.com',
+        `New Inquiry from ${formData.name}: ${formData.service}`,
+        `
+          <h1>New Website Inquiry</h1>
+          <p><strong>Name:</strong> ${formData.name}</p>
+          <p><strong>Email:</strong> ${formData.email}</p>
+          <p><strong>Service:</strong> ${formData.service}</p>
+          <p><strong>Message:</strong></p>
+          <p>${formData.message.replace(/\n/g, '<br>')}</p>
+        `
+      );
+
+      if (!result.success) {
+        throw new Error(result.error);
+      }
 
       setFormState('submitted');
     } catch (error) {
