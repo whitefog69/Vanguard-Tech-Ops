@@ -8,7 +8,7 @@ const Services = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Institutional Service Domains" 
+        title="Services" 
         description="Our services forge the ultimate digital advantage. Spanning elite cloud virtualization, autonomous AI workflows, high-converting e-commerce builds, and striking visual design."
       />
       {/* Hero Section */}
