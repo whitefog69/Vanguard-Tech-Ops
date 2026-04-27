@@ -7,7 +7,7 @@
   --font-label: "Inter", sans-serif;
 
   --color-background: #131313;
-  --color-on-background: #e5e2e1;
+  --color-on-background: #ffffff;
   
   --color-primary: #b1c5ff;
   --color-on-primary: #002c70;
@@ -22,14 +22,14 @@
   --color-secondary-fixed-dim: #dcb8ff;
 
   --color-tertiary: #c8c6c5;
-  --color-on-tertiary: #313030;
+  --color-on-tertiary: #ffffff;
   --color-tertiary-container: #4e4d4d;
-  --color-on-tertiary-container: #c0bebd;
+  --color-on-tertiary-container: #ffffff;
 
   --color-surface: #131313;
-  --color-on-surface: #e5e2e1;
+  --color-on-surface: #ffffff;
   --color-surface-variant: #353534;
-  --color-on-surface-variant: #c3c6d5;
+  --color-on-surface-variant: #ffffff;
   
   --color-surface-container-lowest: #0e0e0e;
   --color-surface-container-low: #1c1b1b;

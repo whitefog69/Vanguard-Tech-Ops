@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { trigger_automation_email } from './src/lib/emailService';
+import { trigger_automation_email } from './src/lib/emailService.ts';
 import dotenv from 'dotenv';
 
 dotenv.config();
