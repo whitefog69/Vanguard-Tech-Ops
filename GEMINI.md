@@ -42,7 +42,7 @@ All commands should be run from within the `Website/` directory.
 Vanguard Tech Ops follows a **Zero-Secret Frontend** architecture. No sensitive API keys or credentials are injected into the client-side bundle. 
 
 ### Inbound Inquiry Protocol (Contact Form)
-The communication channel uses **EmailJS** for secure transmission. Service tokens are public-safe identifiers, and direct email coordinates are never exposed in plaintext logic.
+The mailing system is currently in a "Local Capture" state. Submissions are processed on the frontend only; SMTP integration is pending for a future deployment phase.
 
 ### Technical Hardening
 - **CSP (Content Security Policy)**: Enforced via meta tags to prevent XSS and data exfiltration.

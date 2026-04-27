@@ -26,17 +26,11 @@ const Contact = () => {
     setFormState('submitting');
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Transmission Protocol Failure');
-      }
+      // Mailing protocol temporarily disabled for later configuration
+      console.log('Inquiry Data Captured:', formData);
+      
+      // Simulate network delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       setFormState('submitted');
     } catch (error) {
