@@ -10,13 +10,13 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({ 
-  title = "Vanguard Tech Ops | Digital Sovereignty & Technical Authority", 
+  title = "Vanguard Tech Ops", 
   description = "Professional technology services firm specializing in cloud infrastructure, custom web engineering, AI automation, and pixel-perfect design.",
   keywords = "cloud infrastructure, web development, AI automation, digital sovereignty, tech ops",
   image = "/assets/icons/website.png",
   url = "https://vanguardtechops.com"
 }) => {
-  const siteTitle = title.includes("Vanguard Tech Ops") ? title : `${title} | Vanguard Tech Ops`;
+  const siteTitle = title === "Vanguard Tech Ops" ? title : `${title} | Vanguard Tech Ops`;
 
   return (
     <Helmet>
