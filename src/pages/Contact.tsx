@@ -27,21 +27,16 @@ const Contact = () => {
     setFormState('submitting');
     
     try {
-      const result = await trigger_automation_email(
-        'contact@vanguardtechops.com',
-        `New Inquiry from ${formData.name}: ${formData.service}`,
-        `
-          <h1>New Website Inquiry</h1>
-          <p><strong>Name:</strong> ${formData.name}</p>
-          <p><strong>Email:</strong> ${formData.email}</p>
-          <p><strong>Service:</strong> ${formData.service}</p>
-          <p><strong>Message:</strong></p>
-          <p>${formData.message.replace(/\n/g, '<br>')}</p>
-        `
-      );
+      const response = await fetch('http://localhost:3001/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      if (!result.success) {
-        throw new Error(result.error);
+      if (!response.ok) {
+        throw new Error('Failed to send email');
       }
 
       setFormState('submitted');

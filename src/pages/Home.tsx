@@ -136,28 +136,28 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
           {[
             {
-              name: "Sarah Chen",
-              role: "CEO of Nexus Dynamics",
-              content: "The transition to their sovereign cloud architecture was seamless. We've seen a 40% reduction in latency across our global nodes. Their technical authority is absolute.",
-              image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-              stars: 5,
-              metric: "40% Latency Reduction"
-            },
-            {
               name: "Marcus Thorne",
-              role: "CTO of Aether Systems",
-              content: "Integrating their autonomous AI workflows revolutionized our operational speed. The system intelligence they architected isn't just a tool; it's our competitive advantage.",
+              role: "Tech Manager, SaaS Solutions",
+              content: "Implementing their AI & Automation suite revolutionized our internal workflows. As a tech manager, I value stability and efficiency; their autonomous agents delivered both, drastically reducing our operational overhead.",
               image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
               stars: 5,
-              metric: "2.4x Throughput Boost"
+              metric: "40% Efficiency Gain"
             },
             {
-              name: "Elena Rodriguez",
-              role: "Head of Infrastructure, CyberSecure",
-              content: "Their virtualization protocols are the most robust we've encountered. Digital sovereignty is no longer a goal but a reality for our enterprise. Highly recommended for elite builds.",
+              name: "Maya Patel",
+              role: "Entrepreneur, Online Seller",
+              content: "The web and E-commerce development they provided completely transformed my storefront. My site is now faster, more secure, and perfectly tailored for high-volume sales. My conversion rates have never looked better.",
+              image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
+              stars: 5,
+              metric: "35% Conversion Increase"
+            },
+            {
+              name: "Alex Rivera",
+              role: "Cybersecurity Student",
+              content: "For my research, I analyzed their virtualization protocols and found their implementation of digital sovereignty and hardened environments to be genuinely impressive. The best-practice architecture they use is a gold standard.",
               image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
               stars: 5,
-              metric: "Zero Downtime Deploy"
+              metric: "Hardened Security"
             }
           ].map((t, i) => (
             <motion.div 

@@ -308,18 +308,18 @@ export const Footer = () => {
                 className="flex gap-12 items-center min-w-full"
               >
                 {[...techStack, ...techStack, ...techStack].map((tech, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center gap-4 px-5 py-2.5 glass-card border border-outline-variant/10 transition-all duration-300 opacity-40 hover:opacity-100 group/item hover:border-primary-container hover:bg-primary-container/10 hover:shadow-[0_0_30px_rgba(0,71,171,0.5)] hover:-translate-y-1 transform-gpu will-change-transform"
-                    >
-                    <div className="flex items-center justify-center w-7 h-7 transition-transform duration-300 group-hover/item:scale-110">
-                      {tech.icon}
-                    </div>
-                    <span className="font-headline text-[10px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover/item:text-white transition-colors duration-300">                      {tech.name}
-                    </span>
+                <div
+                  key={idx}
+                  className="flex items-center gap-3 px-4 py-2 glass-card border border-outline-variant/10 transition-all duration-300 opacity-40 hover:opacity-100 group/item hover:border-primary-container hover:bg-primary-container/10 hover:shadow-[0_0_20px_rgba(0,71,171,0.4)] hover:scale-[1.05] transform-gpu will-change-transform"
+                  >
+                  <div className="flex items-center justify-center w-5 h-5 transition-transform duration-300 group-hover/item:scale-110">
+                    {tech.icon}
                   </div>
-                ))}
-              </motion.div>
+                  <span className="font-headline text-[8px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover/item:text-white transition-colors duration-300 whitespace-nowrap">
+                    {tech.name}
+                  </span>
+                </div>
+                ))}              </motion.div>
             </div>
 
             {/* Gradient Fades for Smooth Edges */}

@@ -101,9 +101,8 @@ const Services = () => {
                   <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
                     <Server className="w-6 h-6 text-secondary" />
                   </div>
-                  <span className="font-body text-primary tracking-[0.2em] text-xs font-bold uppercase">Strategic Domain</span>
+                  <h3 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold mb-0 text-on-surface leading-tight uppercase">Virtualization & Cloud</h3>
                 </div>
-                <h3 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-on-surface leading-tight uppercase">Virtualization & Cloud</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 mb-8">
                   <ul className="space-y-4">
                     <li className="flex items-start gap-3">
