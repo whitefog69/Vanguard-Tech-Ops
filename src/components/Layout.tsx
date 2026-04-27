@@ -69,8 +69,9 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex justify-between items-center h-20 md:h-24 px-4 md:px-8 max-w-full">
-      <div className="flex items-center gap-4 md:gap-8">
+    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-outline-variant/15 shadow-[0_0_40px_rgba(177,197,255,0.08)] flex items-center h-20 md:h-24 px-4 md:px-8 max-w-full">
+      {/* Left side: Logo */}
+      <div className="flex-1 flex items-center justify-start">
         <Link to="/" className="flex items-center">
           <img 
             src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`} 
@@ -78,86 +79,89 @@ export const Navbar = () => {
             className="h-12 sm:h-14 md:h-[72px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" 
           />
         </Link>
-        <div className="hidden md:flex gap-6 items-center">
+      </div>
+
+      {/* Center: Navigation Links */}
+      <div className="hidden md:flex gap-8 items-center justify-center">
+        <Link 
+          to="/" 
+          className={cn(
+            "font-headline tracking-[0.05em] uppercase text-sm transition-colors whitespace-nowrap",
+            location.pathname === '/' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
+          )}
+        >
+          Home
+        </Link>
+        <Link 
+          to="/about" 
+          className={cn(
+            "font-headline tracking-[0.05em] uppercase text-sm transition-colors whitespace-nowrap",
+            location.pathname === '/about' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
+          )}
+        >
+          about us
+        </Link>
+        
+        <div 
+          className="relative"
+          onMouseEnter={() => setIsServicesOpen(true)}
+          onMouseLeave={() => setIsServicesOpen(false)}
+        >
           <Link 
-            to="/" 
+            to="/services"
             className={cn(
-              "font-headline tracking-[0.05em] uppercase text-sm transition-colors",
-              location.pathname === '/' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
+              "font-headline tracking-[0.05em] uppercase text-sm transition-colors flex items-center gap-1 whitespace-nowrap",
+              location.pathname.startsWith('/services') ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
             )}
           >
-            Home
-          </Link>
-          <Link 
-            to="/about" 
-            className={cn(
-              "font-headline tracking-[0.05em] uppercase text-sm transition-colors",
-              location.pathname === '/about' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
-            )}
-          >
-            about us
+            Services <ChevronDown className={cn("w-4 h-4 transition-transform", isServicesOpen && "rotate-180")} />
           </Link>
           
-          <div 
-            className="relative"
-            onMouseEnter={() => setIsServicesOpen(true)}
-            onMouseLeave={() => setIsServicesOpen(false)}
-          >
-            <Link 
-              to="/services"
-              className={cn(
-                "font-headline tracking-[0.05em] uppercase text-sm transition-colors flex items-center gap-1",
-                location.pathname.startsWith('/services') ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
-              )}
-            >
-              Services <ChevronDown className={cn("w-4 h-4 transition-transform", isServicesOpen && "rotate-180")} />
-            </Link>
-            
-            <AnimatePresence>
-              {isServicesOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute top-full left-0 w-64 mt-2 bg-surface-container-low border border-outline-variant/20 shadow-2xl backdrop-blur-2xl rounded-sm overflow-hidden"
-                >
-                  <div className="py-2">
-                    {serviceLinks.map((service) => (
-                      <Link
-                        key={service.path}
-                        to={service.path}
-                        className="block px-6 py-3 text-xs font-headline uppercase tracking-widest text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all"
-                      >
-                        {service.name}
-                      </Link>
-                    ))}
-                    <div className="border-t border-outline-variant/10 mt-2 pt-2">
-                      <Link
-                        to="/services"
-                        className="block px-6 py-3 text-[10px] font-headline uppercase tracking-[0.2em] text-primary/60 hover:text-primary transition-colors"
-                      >
-                        View All Services
-                      </Link>
-                    </div>
+          <AnimatePresence>
+            {isServicesOpen && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="absolute top-full left-1/2 -translate-x-1/2 w-64 mt-2 bg-surface-container-low border border-outline-variant/20 shadow-2xl backdrop-blur-2xl rounded-sm overflow-hidden"
+              >
+                <div className="py-2">
+                  {serviceLinks.map((service) => (
+                    <Link
+                      key={service.path}
+                      to={service.path}
+                      className="block px-6 py-3 text-xs font-headline uppercase tracking-widest text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all"
+                    >
+                      {service.name}
+                    </Link>
+                  ))}
+                  <div className="border-t border-outline-variant/10 mt-2 pt-2">
+                    <Link
+                      to="/services"
+                      className="block px-6 py-3 text-[10px] font-headline uppercase tracking-[0.2em] text-primary/60 hover:text-on-surface"
+                    >
+                      View All Services
+                    </Link>
                   </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <Link 
-            to="/contact" 
-            className={cn(
-              "font-headline tracking-[0.05em] uppercase text-sm transition-colors",
-              location.pathname === '/contact' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
+                </div>
+              </motion.div>
             )}
-          >
-            Contact
-          </Link>
+          </AnimatePresence>
         </div>
+
+        <Link 
+          to="/contact" 
+          className={cn(
+            "font-headline tracking-[0.05em] uppercase text-sm transition-colors whitespace-nowrap",
+            location.pathname === '/contact' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
+          )}
+        >
+          Contact
+        </Link>
       </div>
       
-      <div className="flex items-center gap-6">
+      {/* Right side: Actions */}
+      <div className="flex-1 flex items-center justify-end gap-6">
         <div ref={searchRef} className="hidden lg:flex items-center bg-surface-container-lowest border border-outline-variant/20 px-4 py-2 rounded-full relative">
           <Search className="text-on-surface-variant w-4 h-4 mr-2" />
           <input 
@@ -205,7 +209,7 @@ export const Navbar = () => {
           </AnimatePresence>
         </div>
         
-        <Link to="/contact" className="hidden md:block bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)]">
+        <Link to="/contact" className="hidden md:block bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)] whitespace-nowrap">
           Consult Now
         </Link>
         <button 
@@ -246,7 +250,7 @@ export const Navbar = () => {
                     <Link
                       key={service.path}
                       to={service.path}
-                      className="px-4 py-3 text-xs font-headline uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors"
+                      className="px-4 py-3 text-xs font-headline uppercase tracking-widest text-on-surface-variant hover:text-on-surface"
                     >
                       {service.name}
                     </Link>
@@ -271,15 +275,15 @@ export const Navbar = () => {
 
 export const Footer = () => {
   const techStack = [
-    { name: 'WordPress', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/wordpress.png`} alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Shopify', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/shopify.png`} alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'AWS', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/aws.png`} alt="AWS" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Microsoft Azure', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/azure.png`} alt="Azure" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Linux', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/linux.png`} alt="Linux" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Windows', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/windows.png`} alt="Windows" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Github', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/github.png`} alt="Github" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Google Gemini', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/gemini.png`} alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
-    { name: 'Claude', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/claude.png`} alt="Claude" className="w-6 h-6 object-contain brightness-0 invert opacity-70 group-hover/item:brightness-100 group-hover/item:invert-0 group-hover/item:opacity-100 transition-all duration-500" /> },
+    { name: 'WordPress', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/wordpress.png`} alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Shopify', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/shopify.png`} alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'AWS', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/aws.png`} alt="AWS" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Microsoft Azure', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/azure.png`} alt="Azure" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Linux', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/linux.png`} alt="Linux" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Windows', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/windows.png`} alt="Windows" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Github', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/github.png`} alt="Github" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Google Gemini', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/gemini.png`} alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'Claude', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/claude.png`} alt="Claude" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
   ];
 
   return (
@@ -290,38 +294,38 @@ export const Footer = () => {
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface text-center mb-16 tracking-tight">
             Powering Your Digital Ecosystem
           </h2>
-          
+
           <div className="relative overflow-hidden group">
             {/* Infinite Marquee Wrapper */}
             <div className="flex whitespace-nowrap overflow-hidden">
-              <motion.div 
+              <motion.div
                 animate={{ x: [0, -1920] }}
-                transition={{ 
-                  duration: 40, 
-                  repeat: Infinity, 
-                  ease: "linear" 
+                transition={{
+                  duration: 40,
+                  repeat: Infinity,
+                  ease: "linear"
                 }}
                 className="flex gap-12 items-center min-w-full"
               >
                 {[...techStack, ...techStack, ...techStack].map((tech, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-center gap-4 px-8 py-4 glass-card border-outline-variant/5 hover:border-primary/20 transition-all grayscale opacity-40 hover:grayscale-0 hover:opacity-100 group/item"
+                  <div
+                    key={idx}
+                    className="flex items-center gap-4 px-8 py-4 glass-card border border-outline-variant/10 transition-all duration-300 opacity-40 hover:opacity-100 group/item hover:border-primary-container hover:bg-primary-container/10 hover:shadow-[0_0_30px_rgba(0,71,171,0.5)] hover:-translate-y-1"
                   >
-                    <div className="text-primary-fixed-dim group-hover/item:text-primary transition-colors flex items-center justify-center w-8 h-8">
+                    <div className="flex items-center justify-center w-8 h-8 transition-transform duration-300 group-hover/item:scale-110">
                       {tech.icon}
                     </div>
-                    <span className="font-headline text-xs font-bold uppercase tracking-[0.2em] text-on-surface">
+                    <span className="font-headline text-xs font-bold uppercase tracking-[0.2em] text-white/40 group-hover/item:text-white transition-colors duration-300">
                       {tech.name}
                     </span>
                   </div>
                 ))}
               </motion.div>
             </div>
-            
+
             {/* Gradient Fades for Smooth Edges */}
-            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-surface-container-lowest to-transparent z-10"></div>
-            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-surface-container-lowest to-transparent z-10"></div>
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>      
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-surface-container-lowest to-transparent z-10 pointer-events-none"></div>     
           </div>
         </div>
       </div>
@@ -329,10 +333,10 @@ export const Footer = () => {
       {/* Main Footer Content */}
       <div className="py-12 flex flex-col justify-center items-center px-12 gap-6 text-center">
         <div className="flex flex-col items-center gap-4">
-          <img 
-            src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`} 
-            alt="Vanguard Tech Ops" 
-            className="h-24 w-auto object-contain brightness-0 invert opacity-80" 
+          <img
+            src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`}
+            alt="Vanguard Tech Ops"
+            className="h-24 w-auto object-contain brightness-0 invert opacity-80"
           />
           <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">Vanguard Tech Ops. Technical Authority Secured.</p>
         </div>

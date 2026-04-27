@@ -205,7 +205,7 @@ const GraphicDesignPage = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none"
+            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group flex items-center justify-center "
           >
             <InteractionIndicator />
             <CanvasErrorBoundary>
@@ -295,7 +295,7 @@ const GraphicDesignPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none",
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center ",
               "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(119,1,208,0.1)]"
             )}
           >

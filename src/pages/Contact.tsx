@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import SEO from '../components/SEO';
-import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
@@ -27,34 +26,21 @@ const Contact = () => {
     setFormState('submitting');
     
     try {
-      // Use environment variables for EmailJS
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (!serviceId || !templateId || !publicKey) {
-        console.warn('EmailJS environment variables missing. Falling back to simulation.');
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setFormState('submitted');
-        return;
-      }
-
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          service_domain: formData.service,
-          message: formData.message,
-          to_email: 'contact@vanguardtechops.com'
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
         },
-        publicKey
-      );
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Transmission Protocol Failure');
+      }
 
       setFormState('submitted');
     } catch (error) {
-      console.error('Submission Protocol Failure:', error);
+      console.error('Transmission Protocol Failure:', error);
       setFormState('error');
     }
   };

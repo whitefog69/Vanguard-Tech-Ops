@@ -181,7 +181,7 @@ const ShopifyPage = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group max-h-[400px] md:max-h-[500px] lg:max-h-none"
+            className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-primary/20 shadow-2xl relative overflow-hidden group "
           >
             <InteractionIndicator />
             <Canvas camera={{ position: [0, 2, 6], fov: 45 }}>
@@ -244,7 +244,7 @@ const ShopifyPage = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className={cn(
-              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center max-h-[400px] md:max-h-[500px] lg:max-h-none",
+              "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center ",
               "backdrop-blur-md bg-white/5 border border-white/10",
               "neon-glow-cobalt shadow-[0_0_50px_rgba(0,71,171,0.1)]"
             )}
