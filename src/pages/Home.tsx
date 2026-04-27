@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div className="min-h-screen">
       <SEO 
-        title="Institutional Technical Excellence" 
+        title="Vanguard Tech Ops" 
         description="We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience."
       />
       {/* Unified Hero & CTA Section */}
