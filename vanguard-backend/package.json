@@ -1,0 +1,15 @@
+{
+  "name": "vanguard-backend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vanguard Tech Ops — Vercel serverless backend (contact form email relay)",
+  "dependencies": {
+    "@vercel/node": "^5.7.13",
+    "nodemailer": "^8.0.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/nodemailer": "^8.0.0",
+    "typescript": "~5.8.2"
+  }
+}
