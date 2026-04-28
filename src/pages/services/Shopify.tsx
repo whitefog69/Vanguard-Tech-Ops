@@ -109,7 +109,7 @@ const ShopifyPage = () => {
         description="Engineering proprietary Shopify apps and technical automation. High-performance WordPress integrations and headless e-commerce solutions for rapid scaling."
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 
