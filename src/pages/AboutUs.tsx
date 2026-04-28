@@ -47,7 +47,7 @@ const ArchitecturePanel = ({ title, focus, icon: Icon, services }: PanelProps) =
 
 const AboutUs = () => {
   return (
-    <div className="min-h-screen bg-background text-on-surface py-20 md:py-32 px-6 md:px-8">
+    <div className="min-h-screen bg-background text-on-surface py-0 md:py-32 px-6 md:px-8">
       <SEO 
         title="Technical Manifesto & Mission" 
         description="Learn about our story, mission, and the architecture process behind our technical sovereignty. Transforming intricate technical challenges into streamlined, intuitive ecosystems."

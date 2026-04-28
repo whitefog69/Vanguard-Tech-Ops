@@ -50,7 +50,7 @@ const Contact = () => {
   const labelClasses = "block text-[9px] md:text-[10px] font-headline uppercase tracking-[0.2em] text-primary mb-2 font-bold";
 
   return (
-    <div className="min-h-screen bg-background text-on-surface pt-24 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-background text-on-surface pt-0 md:pt-32 pb-16 md:pb-24 px-6 md:px-8 relative overflow-hidden">
       <SEO 
         title="Initialize Inquiry Protocol" 
         description="Ready to scale your technical infrastructure? Establish a secure channel with our lead architects to engineer your sovereign digital environment."
