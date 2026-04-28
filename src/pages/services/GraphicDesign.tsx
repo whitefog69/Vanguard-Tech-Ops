@@ -130,7 +130,7 @@ const GraphicDesignPage = () => {
         description="Crafting cohesive visual identities and visually striking website layouts. High-end UI/UX prototyping, brand identity, and responsive visual design for elite brands."
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
