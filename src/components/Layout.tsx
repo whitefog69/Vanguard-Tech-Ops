@@ -275,15 +275,15 @@ export const Navbar = () => {
 
 export const Footer = () => {
   const techStack = [
-    { name: 'WordPress', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/wordpress.png`} alt="WordPress" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Shopify', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/shopify.png`} alt="Shopify" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'AWS', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/aws.png`} alt="AWS" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Microsoft Azure', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/azure.png`} alt="Azure" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Linux', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/linux.png`} alt="Linux" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Windows', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/windows.png`} alt="Windows" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Github', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/github.png`} alt="Github" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Google Gemini', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/gemini.png`} alt="Gemini" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
-    { name: 'Claude', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/claude.png`} alt="Claude" className="w-6 h-6 object-contain brightness-0 invert group-hover/item:brightness-100 group-hover/item:invert-0 transition-all duration-300" /> },
+    { name: 'WordPress', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/wordpress.png`} alt="WordPress" className="w-6 h-6 object-contain" /> },
+    { name: 'Shopify', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/shopify.png`} alt="Shopify" className="w-6 h-6 object-contain" /> },
+    { name: 'AWS', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/aws.png`} alt="AWS" className="w-6 h-6 object-contain" /> },
+    { name: 'Microsoft Azure', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/azure.png`} alt="Azure" className="w-6 h-6 object-contain" /> },
+    { name: 'Linux', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/linux.png`} alt="Linux" className="w-6 h-6 object-contain" /> },
+    { name: 'Windows', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/windows.png`} alt="Windows" className="w-6 h-6 object-contain" /> },
+    { name: 'Github', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/github.png`} alt="Github" className="w-6 h-6 object-contain" /> },
+    { name: 'Google Gemini', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/gemini.png`} alt="Gemini" className="w-6 h-6 object-contain" /> },
+    { name: 'Claude', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/claude.png`} alt="Claude" className="w-6 h-6 object-contain" /> },
   ];
 
   return (
@@ -308,17 +308,32 @@ export const Footer = () => {
                 className="flex gap-12 items-center min-w-full"
               >
                 {[...techStack, ...techStack, ...techStack].map((tech, idx) => (
-                <div
+                <motion.div
                   key={idx}
-                  className="flex items-center gap-3 px-4 py-2 glass-card border border-outline-variant/10 transition-all duration-300 opacity-40 hover:opacity-100 group/item hover:border-primary-container hover:bg-primary-container/10 hover:shadow-[0_0_20px_rgba(0,71,171,0.4)] hover:scale-[1.05] transform-gpu will-change-transform"
-                  >
-                  <div className="flex items-center justify-center w-5 h-5 transition-transform duration-300 group-hover/item:scale-110">
+                  animate={{
+                    opacity: [0.6, 1, 0.6],
+                    scale: [1, 1.05, 1],
+                    boxShadow: [
+                      "0 0 10px rgba(0,71,171,0.2)",
+                      "0 0 25px rgba(0,71,171,0.6)",
+                      "0 0 10px rgba(0,71,171,0.2)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 3,
+                    delay: (idx % techStack.length) * 0.2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                  className="flex items-center gap-3 px-4 py-2 glass-card border border-primary-container bg-primary-container/10 transform-gpu will-change-transform"
+                >
+                  <div className="flex items-center justify-center w-5 h-5 scale-110">
                     {tech.icon}
                   </div>
-                  <span className="font-headline text-[8px] font-bold uppercase tracking-[0.2em] text-white/40 group-hover/item:text-white transition-colors duration-300 whitespace-nowrap">
+                  <span className="font-headline text-[8px] font-bold uppercase tracking-[0.2em] text-white whitespace-nowrap">
                     {tech.name}
                   </span>
-                </div>
+                </motion.div>
                 ))}              </motion.div>
             </div>
 
