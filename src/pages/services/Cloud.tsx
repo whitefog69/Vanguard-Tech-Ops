@@ -134,7 +134,7 @@ const CloudPage = () => {
         description="Expert orchestration of cloud infrastructure and virtualization environments. Scaling AWS, OCI, and private clusters with zero-trust security architecture."
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
