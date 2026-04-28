@@ -12,7 +12,7 @@ const Home = () => {
         description="We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience."
       />
       {/* Unified Hero & CTA Section */}
-      <section className="relative min-h-screen lg:h-screen flex flex-col items-center justify-center py-20 lg:py-0 px-6 overflow-hidden">
+      <section className="relative min-h-screen lg:h-screen flex flex-col items-center justify-center pt-20 lg:py-0 px-6 overflow-hidden">
         {/* Background Video */}
         <video 
           autoPlay 
