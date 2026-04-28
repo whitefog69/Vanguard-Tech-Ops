@@ -12,7 +12,7 @@ const Services = () => {
         description="Our services forge the ultimate digital advantage. Spanning elite cloud virtualization, autonomous AI workflows, high-converting e-commerce builds, and striking visual design."
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden pt-20 lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
