@@ -3,7 +3,6 @@ import { motion } from 'motion/react';
 import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 import SEO from '../components/SEO';
-import { trigger_automation_email } from '../lib/emailService';
 
 const Contact = () => {
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
@@ -27,7 +26,7 @@ const Contact = () => {
     setFormState('submitting');
     
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://vanguard-backend.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
