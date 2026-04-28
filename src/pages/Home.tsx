@@ -105,7 +105,7 @@ const Home = () => {
             <h2 className="font-headline text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-6 tracking-tighter uppercase">
                 Ready to Architect Your <span className="italic font-light text-primary">Sovereignty</span>?
             </h2>
-            <Link to="/about" className="px-8 sm:px-12 py-4 sm:py-5 border border-outline-variant/30 text-on-surface font-headline font-bold tracking-widest uppercase hover:bg-surface-container-highest/20 transition-all text-[10px] sm:text-xs md:text-sm">
+            <Link to="/about" className="px-8 sm:px-12 py-4 sm:py-5 border border-outline-variant/60 text-on-surface font-headline font-bold tracking-widest uppercase hover:bg-surface-container-highest/20 transition-all text-[10px] sm:text-xs md:text-sm">
                 View Technical Manifesto
             </Link>
         </motion.div>
