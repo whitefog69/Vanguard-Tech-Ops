@@ -125,7 +125,7 @@ const WebDevPage = () => {
         description="Bespoke web engineering focused on speed, clean architecture, and high-conversion experiences. Custom WordPress, Shopify, and React-based ecosystems."
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden py-20 lg:py-0">
+      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
         {/* Background Video */}
         <video 
           autoPlay 
