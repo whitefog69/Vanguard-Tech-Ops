@@ -1,11 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import { trigger_automation_email } from './src/lib/emailService.js';
 import dotenv from 'dotenv';
 import path from 'path';
-import { fileURLToPath } from 'url';
+dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-dotenv.config();
+import express from 'express';
+import cors from 'cors';
+import { trigger_automation_email } from './src/lib/emailService.ts';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,54 +18,53 @@ app.use(express.json());
 app.post('/api/contact', async (req, res) => {
   const { name, email, service, message } = req.body;
   
+  if (!name || !email || !service || !message) {
+    return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  console.log(`[API] Received inquiry from: ${name} <${email}> for ${service}`);
+
   const result = await trigger_automation_email(
     process.env.MAIL_TO || 'contact@vanguardtechops.com',
     `New Inquiry from ${name}: ${service}`,
     `
-      <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
-        <thead>
-          <tr style="background-color: #f4f4f4;">
-            <th colspan="2" style="padding: 10px; text-align: left; border: 1px solid #ddd;">New Website Inquiry</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Name:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${name}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Email:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Service:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${service}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
-            <td style="padding: 10px; border: 1px solid #ddd;">${message.replace(/\n/g, '<br>')}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div style="max-width: 600px; margin: 0 auto; font-family: sans-serif; color: #333;">
+        <h2 style="color: #000; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Website Inquiry</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Message:</strong></p>
+        <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border: 1px solid #eee;">
+          ${message.replace(/\n/g, '<br>')}
+        </div>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
+        <p style="font-size: 12px; color: #999;">Sent from vanguardtechops.com inquiry portal.</p>
+      </div>
     `
   );
 
   if (result.success) {
     res.status(200).json({ message: 'Email sent successfully' });
   } else {
+    console.error('[API] Email transmission failure:', result.error);
     res.status(500).json({ error: result.error });
   }
 });
 
-// Serve frontend in production, or proxy dev requests
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('dist'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-  });
-}
+// Serve frontend files
+const distPath = path.join(__dirname, 'dist');
+app.use(express.static(distPath));
+
+// SPA Fallback for non-API routes
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ error: 'API route not found' });
+  }
+  res.sendFile(path.join(distPath, 'index.html'));
+});
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(Number(PORT), '0.0.0.0', () => {
+  console.log(`[SYSTEM] Server initialized on port ${PORT}`);
+  console.log(`[SYSTEM] Environment: ${process.env.NODE_ENV || 'development'}`);
 });
