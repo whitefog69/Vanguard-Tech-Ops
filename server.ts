@@ -14,7 +14,7 @@ app.post('/api/send-email', async (req, res) => {
   const { name, email, service, message } = req.body;
   
   const result = await trigger_automation_email(
-    'contact@vanguardtechops.com',
+    process.env.MAIL_TO || 'contact@vanguardtechops.com',
     `New Inquiry from ${name}: ${service}`,
     `
       <h1>New Website Inquiry</h1>

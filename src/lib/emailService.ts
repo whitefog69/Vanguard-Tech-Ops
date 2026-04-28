@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.zoho.com',
+  host: 'smtppro.zoho.com',
   port: 465,
   secure: true,
   auth: {
-    user: process.env.ZOHO_SENDER_EMAIL,
-    pass: process.env.ZOHO_APP_PASSWORD,
+    user: process.env.ZOHO_USER,
+    pass: process.env.ZOHO_PASS,
   },
 });
 
@@ -23,7 +23,7 @@ const transporter = nodemailer.createTransport({
 export async function trigger_automation_email(recipient: string, subject: string, html_body: string) {
   try {
     const info = await transporter.sendMail({
-      from: `"Vanguard Tech Ops" <${process.env.ZOHO_SENDER_EMAIL}>`,
+      from: `"Vanguard Tech Ops" <${process.env.ZOHO_USER}>`,
       to: recipient,
       subject: subject,
       html: html_body,
