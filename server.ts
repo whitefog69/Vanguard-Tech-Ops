@@ -17,12 +17,31 @@ app.post('/api/send-email', async (req, res) => {
     process.env.MAIL_TO || 'contact@vanguardtechops.com',
     `New Inquiry from ${name}: ${service}`,
     `
-      <h1>New Website Inquiry</h1>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Service:</strong> ${service}</p>
-      <p><strong>Message:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
+      <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
+        <thead>
+          <tr style="background-color: #f4f4f4;">
+            <th colspan="2" style="padding: 10px; text-align: left; border: 1px solid #ddd;">New Website Inquiry</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Name:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Email:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Service:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${service}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; vertical-align: top;">Message:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${message.replace(/\n/g, '<br>')}</td>
+          </tr>
+        </tbody>
+      </table>
     `
   );
 
