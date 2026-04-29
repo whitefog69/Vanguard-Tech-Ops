@@ -11,10 +11,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
   } else {
-    // If origin is not allowed, explicitly set it to one of the allowed origins
-    // or handle as needed to avoid CORS errors for valid origins.
-    // For now, let's allow all if it matches one.
-    res.setHeader('Access-Control-Allow-Origin', allowedOrigins[0]);
+    // Fallback if origin is not in list but we need to pass preflight
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
   }
 
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
