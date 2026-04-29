@@ -18,16 +18,21 @@ const transporter = nodemailer.createTransport({
  * @param recipient - The recipient's email address.
  * @param subject   - The email subject line.
  * @param html_body - The HTML content of the email body.
+ * @param replyTo   - The email address to set in the Reply-To header.
+ * @param senderName - The name of the sender (the client).
  */
 export async function trigger_automation_email(
   recipient: string,
   subject: string,
   html_body: string,
-  replyTo?: string
+  replyTo?: string,
+  senderName?: string
 ): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
     const info = await transporter.sendMail({
-      from: replyTo ? `"${replyTo.split('@')[0]}" <${process.env.ZOHO_USER}>` : `"Vanguard Tech Ops" <${process.env.ZOHO_USER}>`,
+      from: senderName 
+        ? `"${senderName} via Vanguard Tech Ops" <${process.env.ZOHO_USER}>` 
+        : `"Vanguard Tech Ops" <${process.env.ZOHO_USER}>`,
       to: recipient,
       subject: subject,
       html: html_body,

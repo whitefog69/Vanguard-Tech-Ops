@@ -45,7 +45,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <p style="font-size:12px;color:#999">Sent from vanguardtechops.com inquiry portal.</p>
       </div>
     `,
-    email
+    email,
+    name
   );
 
   if (result.success) {
