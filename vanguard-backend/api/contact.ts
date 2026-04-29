@@ -1,5 +1,8 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { trigger_automation_email } from '../src/lib/emailService';
+import { trigger_automation_email, send_user_confirmation } from '../src/lib/emailService';
+
+// Simple validator for email format
+const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const allowedOrigins = ['https://whitefog69.github.io', 'https://vanguardtechops.com'];
@@ -26,6 +29,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'Missing required fields' });
   }
 
+  if (!isValidEmail(email)) {
+    return res.status(400).json({ error: 'Invalid email format' });
+  }
+
   const result = await trigger_automation_email(
     process.env.MAIL_TO ?? 'contact@vanguardtechops.com',
     `New Inquiry from ${name}: ${service}`,
@@ -50,6 +57,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   );
 
   if (result.success) {
+    // Send confirmation to user
+    await send_user_confirmation(email, name);
     return res.status(200).json({ message: 'Email sent successfully' });
   }
 
