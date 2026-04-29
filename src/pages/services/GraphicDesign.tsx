@@ -8,6 +8,7 @@ import { Palette, PenTool, Layout, Image, Figma, MonitorSmartphone, BarChart3 } 
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
+import CTASection from '../../components/CTASection';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   constructor(props: {children: React.ReactNode}) {
@@ -315,6 +316,9 @@ const GraphicDesignPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
     </div>
   );
 };

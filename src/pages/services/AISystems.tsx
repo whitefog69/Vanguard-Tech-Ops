@@ -8,6 +8,7 @@ import { Brain, Network, Bot, Workflow, Cpu, Database, Zap, Code2 } from 'lucide
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
+import CTASection from '../../components/CTASection';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   constructor(props: {children: React.ReactNode}) {
@@ -316,6 +317,9 @@ const AISystemsPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { Server, Shield, Cloud, Cpu, Lock, Network } from 'lucide-react';
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
+import CTASection from '../../components/CTASection';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   constructor(props: {children: React.ReactNode}) {
@@ -318,6 +319,9 @@ const CloudPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { Smartphone, Layout, Blocks, ScanLine, Layers, Code2, Globe, ShoppingBag
 import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
+import CTASection from '../../components/CTASection';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   state = { hasError: false };
@@ -306,6 +307,9 @@ const WebDevPage = () => {
           </motion.div>
         </div>
       </section>
+
+      {/* CTA Section */}
+      <CTASection />
     </div>
   );
 };
