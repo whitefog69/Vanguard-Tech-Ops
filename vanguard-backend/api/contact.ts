@@ -35,7 +35,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           New Website Inquiry
         </h2>
         <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Reply-to Email:</strong> <a href="mailto:${email}">${email}</a></p>
         <p><strong>Service:</strong> ${service}</p>
         <p><strong>Message:</strong></p>
         <div style="background:#f9f9f9;padding:15px;border-radius:4px;border:1px solid #eee">
@@ -44,7 +44,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <hr style="border:0;border-top:1px solid #eee;margin:20px 0" />
         <p style="font-size:12px;color:#999">Sent from vanguardtechops.com inquiry portal.</p>
       </div>
-    `
+    `,
+    email
   );
 
   if (result.success) {

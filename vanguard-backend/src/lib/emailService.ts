@@ -22,7 +22,8 @@ const transporter = nodemailer.createTransport({
 export async function trigger_automation_email(
   recipient: string,
   subject: string,
-  html_body: string
+  html_body: string,
+  replyTo?: string
 ): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
     const info = await transporter.sendMail({
@@ -30,6 +31,7 @@ export async function trigger_automation_email(
       to: recipient,
       subject: subject,
       html: html_body,
+      replyTo: replyTo,
     });
     console.log(`[Email] Successfully sent: ${info.messageId}`);
     return { success: true, messageId: info.messageId };
