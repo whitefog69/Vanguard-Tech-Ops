@@ -55,8 +55,8 @@ export async function send_user_confirmation(
   userName: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    await transporter.sendMail({
-      from: `"VanguardTechOps" <${process.env.ZOHO_USER}>`,
+    const info = await transporter.sendMail({
+      from: `"VanguardTechOps" <no_reply@vanguardtechops.com>`,
       to: userEmail,
       subject: "Thanks for reaching out to VanguardTechOps",
       html: `
@@ -67,6 +67,7 @@ export async function send_user_confirmation(
         </div>
       `,
     });
+    console.log(`[Email] Confirmation sent to ${userEmail}: ${info.messageId}`);
     return { success: true };
   } catch (error) {
     console.error(`[Email] Failed to send confirmation to ${userEmail}:`, error);
