@@ -4,7 +4,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 import express from 'express';
 import cors from 'cors';
-import { trigger_automation_email } from './src/lib/emailService.ts';
+import { trigger_automation_email, send_user_confirmation } from './src/lib/emailService.ts';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -44,6 +44,8 @@ app.post('/api/contact', async (req, res) => {
   );
 
   if (result.success) {
+    // Send confirmation to user
+    await send_user_confirmation(email, name, service, message);
     res.status(200).json({ message: 'Email sent successfully' });
   } else {
     console.error('[API] Email transmission failure:', result.error);
