@@ -19,6 +19,7 @@ const Home = () => {
           loop 
           muted 
           playsInline
+          preload="none"
           poster={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`}
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
