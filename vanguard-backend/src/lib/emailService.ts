@@ -30,10 +30,8 @@ export async function trigger_automation_email(
 ): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
     const info = await transporter.sendMail({
-      from: senderName 
-        ? `"${senderName} via VanguardTechOps" <${process.env.ZOHO_USER}>` 
-        : `"VanguardTechOps" <${process.env.ZOHO_USER}>`,
-      replyTo: replyTo,
+      from: `"${senderName} via VanguardTechOps" <${process.env.ZOHO_USER}>`,
+      replyTo: `${replyTo}`,
       to: recipient,
       subject: subject,
       html: html_body,
