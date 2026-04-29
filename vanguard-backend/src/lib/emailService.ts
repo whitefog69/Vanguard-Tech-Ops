@@ -31,12 +31,14 @@ export async function trigger_automation_email(
   try {
     const info = await transporter.sendMail({
       from: senderName 
-        ? `"${senderName} via Vanguard Tech Ops" <${process.env.ZOHO_USER}>` 
-        : `"Vanguard Tech Ops" <${process.env.ZOHO_USER}>`,
+        ? `"${senderName} via VanguardTechOps" <${process.env.ZOHO_USER}>` 
+        : `"VanguardTechOps" <${process.env.ZOHO_USER}>`,
+      replyTo: senderName && replyTo 
+        ? `"${senderName}" <${replyTo}>` 
+        : replyTo,
       to: recipient,
       subject: subject,
       html: html_body,
-      replyTo: replyTo,
     });
     console.log(`[Email] Successfully sent: ${info.messageId}`);
     return { success: true, messageId: info.messageId };
