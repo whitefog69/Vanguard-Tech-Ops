@@ -58,7 +58,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (result.success) {
     // Send confirmation to user
-    await send_user_confirmation(email, name);
+    await send_user_confirmation(email, name, service, message);
     return res.status(200).json({ message: 'Email sent successfully' });
   }
 

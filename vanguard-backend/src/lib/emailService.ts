@@ -52,19 +52,25 @@ export async function trigger_automation_email(
  */
 export async function send_user_confirmation(
   userEmail: string,
-  userName: string
+  userName: string,
+  service: string,
+  message: string
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const info = await transporter.sendMail({
-      from: `"VanguardTechOps" <${process.env.ZOHO_USER}>`,
+      from: `"VanguardTechOps" <${process.env.ZOHO_NOREPLY_EMAIL}>`,
       to: userEmail,
-      subject: "Thanks for reaching out to VanguardTechOps",
+      subject: `We received your inquiry, ${userName}!`,
       html: `
-        <div style="font-family:sans-serif;color:#333">
-          <h2>Hello ${userName},</h2>
-          <p>Thank you for contacting VanguardTechOps. We have received your inquiry and will get back to you shortly.</p>
-          <p>Best regards,<br>The VanguardTechOps Team</p>
-        </div>
+        <p>Hi ${userName},</p>
+        <p>Thank you for reaching out to VanguardTechOps. We have received your inquiry regarding <strong>${service}</strong> and will get back to you within 24-48 hours.</p>
+        <p>Here's a summary of what you submitted:</p>
+        <ul>
+          <li><strong>Service:</strong> ${service}</li>
+          <li><strong>Message:</strong> ${message}</li>
+        </ul>
+        <p>Best regards,<br/>VanguardTechOps Team</p>
+        <p style="font-size:11px;color:gray;">This is an automated confirmation, please do not reply to this email.</p>
       `,
     });
     console.log(`[Email] Confirmation sent to ${userEmail}: ${info.messageId}`);
