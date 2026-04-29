@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart } from 'lucide-react';
 import SEO from '../components/SEO';
-import CTASection from '../components/CTASection';
 
 const Services = () => {
   return (
@@ -69,7 +68,7 @@ const Services = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center"
             >
               <Link to="/contact" className="px-10 py-5 bg-primary-container text-white font-headline font-bold tracking-widest uppercase text-base flex items-center justify-center gap-3 hover:bg-primary-container/80 transition-all active:scale-95">
-                Initialize Protocol <ArrowRight className="w-6 h-6" />
+                Contact us <ArrowRight className="w-6 h-6" />
               </Link>
               <Link to="/about" className="px-10 py-5 border border-outline-variant/30 text-on-surface font-headline font-bold tracking-widest uppercase text-base hover:bg-surface-container-highest/20 transition-all">
                 Technical Manifesto
@@ -315,9 +314,6 @@ const Services = () => {
           </Link>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <CTASection />
     </div>
   );
 };
