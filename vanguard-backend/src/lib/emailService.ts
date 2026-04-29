@@ -56,7 +56,7 @@ export async function send_user_confirmation(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const info = await transporter.sendMail({
-      from: `"VanguardTechOps" <no_reply@vanguardtechops.com>`,
+      from: `"VanguardTechOps" <${process.env.ZOHO_USER}>`,
       to: userEmail,
       subject: "Thanks for reaching out to VanguardTechOps",
       html: `
