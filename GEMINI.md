@@ -4,7 +4,7 @@ This workspace contains the source code and assets for the "Vanguard Tech Ops" p
 
 ## Project Structure
 
-- `Website/`: The main React application directory.
+- **Repository Root**: The main React application directory.
   - `src/`: Source code for the React application.
     - `components/`: Reusable UI components (e.g., Layout, Navbar, Footer).
     - `pages/`: Top-level route components (Home, Services, Contact, etc.).
@@ -13,6 +13,7 @@ This workspace contains the source code and assets for the "Vanguard Tech Ops" p
     - `App.tsx`: Routing configuration using React Router 7.
     - `index.css`: Global styles and Tailwind 4 theme configuration.
   - `public/`: Static assets for the website.
+  - `vanguard-backend/`: Separate Express/Vercel backend source code.
 - `*.mp4`, `*.png`: Source media assets (located in the root directory for reference/source).
 
 ## Core Technologies
@@ -24,11 +25,10 @@ This workspace contains the source code and assets for the "Vanguard Tech Ops" p
 - **Styling**: Tailwind CSS 4
 - **Animations**: Framer Motion (`motion/react`)
 - **Icons**: Lucide React
-- **Routing**: React Router 7
 
 ## Building and Running
 
-All commands should be run from within the `Website/` directory.
+All commands should be run from within the root directory.
 
 - `npm install`: Install dependencies.
 - `npm run dev`: Start development server on `http://localhost:3000`.
@@ -59,8 +59,9 @@ The mailing system is currently in a "Local Capture" state. Submissions are proc
 
 ## Key Files
 
-- `Website/src/App.tsx`: Main routing and application shell.
-- `Website/src/index.css`: Tailwind 4 theme and global utility classes (e.g., `.glass-card`).
-- `Website/src/components/Layout.tsx`: Shared layout, Navbar with services dropdown, and Footer.
-- `Website/package.json`: Project dependencies and scripts.
-- `Website/vite.config.ts`: Vite configuration including Tailwind integration.
+- `src/App.tsx`: Main routing and application shell.
+- `src/index.css`: Tailwind 4 theme and global utility classes (e.g., `.glass-card`).
+- `src/components/Layout.tsx`: Shared layout, Navbar with services dropdown, and Footer.
+- `package.json`: Project dependencies and scripts.
+- `vite.config.ts`: Vite configuration including Tailwind integration.
+- `vercel.json`: Frontend deployment configuration for Vercel.
