@@ -128,72 +128,66 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="font-headline text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-on-surface uppercase"
             >
-            CLIENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic">REVIEWS</span>
+            CLIENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic pr-[0.15em]">REVIEWS</span>
           </motion.h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+          {/* Real client feedback only: name, role, service and their words (with their permission). */}
           {[
             {
               name: "Marcus Thorne",
               role: "Tech Manager, SaaS Solutions",
+              service: "AI & Automation",
               content: "Implementing their AI & Automation suite revolutionized our internal workflows. As a tech manager, I value stability and efficiency; their autonomous agents delivered both, drastically reducing our operational overhead.",
-              image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop",
-              stars: 5,
-              metric: "40% Efficiency Gain"
+              stars: 5
             },
             {
               name: "Maya Patel",
               role: "Entrepreneur, Online Seller",
+              service: "Web & E-commerce",
               content: "The web and E-commerce development they provided completely transformed my storefront. My site is now faster, more secure, and perfectly tailored for high-volume sales. My conversion rates have never looked better.",
-              image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop",
-              stars: 5,
-              metric: "35% Conversion Increase"
+              stars: 5
             },
             {
               name: "Alex Rivera",
               role: "Cybersecurity Student",
+              service: "Security & Cloud",
               content: "For my research, I analyzed their virtualization protocols and found their implementation of digital sovereignty and hardened environments to be genuinely impressive. The best-practice architecture they use is a gold standard.",
-              image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop",
-              stars: 5,
-              metric: "Hardened Security"
+              stars: 5
             }
           ].map((t, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15, duration: 0.8, ease: "easeOut" }}
-              className="glass-card p-8 md:p-10 flex flex-col justify-between group hover:border-primary/20 hover:bg-surface-container-low/40 transition-all duration-500 relative hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(0,71,171,0.1)]"
+              className="glass-card p-8 md:p-10 flex flex-col justify-between gap-8 hover:border-primary/20 transition-colors duration-500"
             >
-              <div className="relative z-10">
-                <div className="flex gap-1 mb-8">
-                  {[...Array(t.stars)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-primary text-primary opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
-                  ))}
-                </div>
-
-                <div className="space-y-6">
-                  <p className="font-body text-on-surface-variant text-sm sm:text-base leading-relaxed italic opacity-90 relative">
-                    <span className="text-4xl text-primary/20 absolute -top-4 -left-6 font-headline select-none">"</span>
-                    {t.content}
-                  </p>
-
-                  <div className="pt-8 border-t border-outline-variant/10 flex items-center gap-5">
-                    <div className="relative">
-                      <img src={t.image} alt={t.name} loading="lazy" className="w-14 h-14 rounded-full object-cover border border-outline-variant/20 relative z-10" />
-                    </div>
-                    <div>
-                      <h4 className="font-headline font-bold text-on-surface text-lg tracking-tight group-hover:text-primary transition-colors uppercase">{t.name}</h4>
-                      <p className="font-body text-[10px] text-on-surface-variant uppercase tracking-[0.2em] opacity-60 font-bold">{t.role}</p>
-                    </div>
+              <div className="space-y-5">
+                <div className="flex items-center justify-between gap-4">
+                  <div className="flex gap-1">
+                    {[...Array(t.stars)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-primary text-primary opacity-80" />
+                    ))}
                   </div>
+                  <span className="font-body text-xs text-on-surface-variant opacity-60 whitespace-nowrap">{t.service}</span>
                 </div>
+
+                <p className="font-body text-on-surface-variant text-sm sm:text-base leading-relaxed">
+                  {t.content}
+                </p>
               </div>
 
-              <div className="absolute top-6 right-6 font-mono text-[9px] text-primary/30 uppercase tracking-widest border border-primary/5 px-2 py-1 rounded bg-primary/5">
-                {t.metric}
+              <div className="pt-6 border-t border-outline-variant/10 flex items-center gap-4">
+                <div className="w-11 h-11 flex-shrink-0 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-headline font-bold text-primary text-sm">
+                  {t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </div>
+                <div>
+                  <h4 className="font-body font-semibold text-on-surface text-base">{t.name}</h4>
+                  <p className="font-body text-xs text-on-surface-variant opacity-70">{t.role}</p>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -206,7 +200,7 @@ const Home = () => {
           <div className="flex flex-col items-center text-center mb-12 md:mb-20">
             <span className="font-body text-secondary tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 font-bold">Unwavering Standards</span>
             <h2 className="font-headline text-3xl sm:text-5xl md:text-6xl font-bold text-on-surface uppercase tracking-tight">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container italic">Guarantee</span>
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container italic pr-[0.15em]">Guarantee</span>
             </h2>
           </div>
           
