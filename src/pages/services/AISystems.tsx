@@ -284,7 +284,7 @@ const AISystemsPage = () => {
               {[
                 { name: t({ en: "Vector Search Core", fr: "Recherche vectorielle" }), tool: "Pinecone / Qdrant" },
                 { name: t({ en: "LLM Orchestration", fr: "Orchestration de LLM" }), tool: "LangChain / LLamaIndex" },
-                { name: t({ en: "Foundation Models", fr: "Modèles de fondation" }), tool: "Gemini Pro / Claude 3" },
+                { name: t({ en: "Foundation Models", fr: "Modèles de fondation" }), tool: "OpenAI / Anthropic" },
               ].map((layer, i) => (
                 <div key={i} className="flex flex-col sm:flex-row justify-between items-center bg-surface-container-low p-4 md:p-5 rounded-lg border border-outline-variant/10 gap-3">
                   <div className="flex items-center gap-4">
