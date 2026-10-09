@@ -360,7 +360,7 @@ export const Footer = () => {
           <Link to="/terms" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link>
           <button onClick={openCookieSettings} className="hover:text-primary transition-colors">Cookie settings</button>
         </div>
-        <p className="font-body text-[11px] text-on-surface/30">© {new Date().getFullYear()} Vanguard Tech Ops. All rights reserved.</p>
+        <p className="font-body text-[11px] text-on-surface/30">© 2022 Vanguard Tech Ops. All rights reserved.</p>
       </div>
     </footer>
   );
