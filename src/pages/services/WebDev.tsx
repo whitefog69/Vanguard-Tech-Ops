@@ -157,7 +157,7 @@ const WebDevPage = () => {
             <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-fixed-dim/10 mb-6 md:mb-8 border border-secondary-fixed-dim/20 neon-glow-violet">
               <Globe className="w-8 h-8 md:w-12 md:h-12 text-[#dcb8ff] animate-pulse" />
             </div>
-            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-[clamp(2.25rem,1rem+5.5vw,6rem)] font-black tracking-tighter mb-6 uppercase">
               {t({ en: 'Precision Web &', fr: 'Développement Web &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dcb8ff] to-[#7701d0]" style={{textShadow: "0 0 20px rgba(220,184,255,0.1)"}}>{t({ en: 'Ecom Development', fr: 'E-commerce' })}</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
@@ -172,7 +172,7 @@ const WebDevPage = () => {
 
       {/* Feature Grid */}
       <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 md:gap-8">
           {[
             { icon: Code2, title: t({ en: "WordPress Engineering", fr: "Développement WordPress" }), desc: t({ en: "Bespoke WordPress builds focused on speed and clean architecture.", fr: "Des sites WordPress sur mesure, rapides et bien construits." }) },
             { icon: ShoppingBag, title: t({ en: "Shopify Development", fr: "Développement Shopify" }), desc: t({ en: "Specialized e-commerce development for high-conversion web presence.", fr: "Un développement e-commerce spécialisé pour une boutique qui convertit." }) },
@@ -192,7 +192,7 @@ const WebDevPage = () => {
               )}
             >
               <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-all duration-300" />
-              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <h3 className="font-headline text-xl xl:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-wider leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
@@ -298,7 +298,7 @@ const WebDevPage = () => {
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface">{t({ en: 'Interface Protocol', fr: 'Nos standards d’interface' })}</h2>
+            <h2 className="font-headline text-[clamp(1.75rem,1rem+2vw,2.25rem)] font-bold mb-6 md:mb-8 uppercase tracking-wider text-on-surface">{t({ en: 'Interface Protocol', fr: 'Nos standards d’interface' })}</h2>
             <ul className="space-y-4 md:space-y-6">
               {t({
                 en: [

@@ -162,7 +162,7 @@ const GraphicDesignPage = () => {
             <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-container/20 mb-6 md:mb-8 border border-secondary/20 neon-glow-violet">
               <Palette className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
-            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-[clamp(2.25rem,1rem+5.5vw,6rem)] font-black tracking-tighter mb-6 uppercase">
               {t({ en: 'Graphic &', fr: 'Design Graphique &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">{t({ en: 'Web Design', fr: 'Web' })}</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
@@ -198,7 +198,7 @@ const GraphicDesignPage = () => {
               )}
             >
               <item.icon className="w-8 h-8 md:w-10 md:h-10 text-secondary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-secondary-container transition-colors" />
-              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <h3 className="font-headline text-xl xl:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-wider leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
@@ -280,7 +280,7 @@ const GraphicDesignPage = () => {
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">{t({ en: 'Design Philosophy', fr: 'Notre philosophie du design' })}</h2>
+            <h2 className="font-headline text-[clamp(1.75rem,1rem+2vw,2.25rem)] font-bold mb-6 md:mb-8 uppercase tracking-wider text-on-surface text-center lg:text-left">{t({ en: 'Design Philosophy', fr: 'Notre philosophie du design' })}</h2>
             <p className="font-body text-on-surface-variant leading-relaxed mb-8 text-sm md:text-base text-center lg:text-left">
               {t({
                 en: 'Our design ethos is rooted in "Quiet Luxury"—a minimalist yet high-impact approach that prioritizes negative space, premium typography, and seamless interaction.',

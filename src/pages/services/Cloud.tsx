@@ -166,7 +166,7 @@ const CloudPage = () => {
             <div className="inline-block p-3 md:p-4 rounded-full bg-primary-container/20 mb-6 md:mb-8 border border-primary/20 neon-glow-cobalt">
               <Server className="w-8 h-8 md:w-12 md:h-12 text-primary animate-pulse" />
             </div>
-            <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
+            <h1 className="font-headline text-[clamp(2.25rem,1rem+5.5vw,6rem)] font-black tracking-tighter mb-6 uppercase">
               {t({ en: 'Virtualization &', fr: 'Virtualisation &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">Cloud</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
@@ -202,7 +202,7 @@ const CloudPage = () => {
               )}
             >
               <item.icon className="w-8 h-8 md:w-10 md:h-10 text-primary mb-4 md:mb-6 opacity-80 group-hover:opacity-100 group-hover:text-primary-container transition-all duration-300" />
-              <h3 className="font-headline text-xl md:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-widest leading-tight">{item.title}</h3>
+              <h3 className="font-headline text-xl xl:text-2xl font-bold mb-3 md:mb-4 uppercase tracking-wider leading-tight">{item.title}</h3>
               <p className="font-body text-on-surface-variant leading-relaxed text-xs md:text-sm">
                 {item.desc}
               </p>
@@ -284,7 +284,7 @@ const CloudPage = () => {
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface">{t({ en: 'Architectural Specifications', fr: 'Spécifications techniques' })}</h2>
+            <h2 className="font-headline text-[clamp(1.75rem,1rem+2vw,2.25rem)] font-bold mb-6 md:mb-8 uppercase tracking-wider text-on-surface">{t({ en: 'Architectural Specifications', fr: 'Spécifications techniques' })}</h2>
             <ul className="space-y-4 md:space-y-6">
               {t({
                 en: [

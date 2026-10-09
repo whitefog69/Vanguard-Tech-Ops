@@ -52,7 +52,7 @@ const Services = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-headline text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-on-surface mb-8 leading-tight"
+              className="font-headline text-[clamp(2.25rem,0.75rem+6.5vw,8rem)] font-bold tracking-tighter text-on-surface mb-8 leading-tight"
             >
               {t({ en: 'Architects of', fr: 'Architectes de la' })} <br/>
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{t({ en: 'Digital Sovereignty', fr: 'Souveraineté Numérique' })}</span>
@@ -88,12 +88,12 @@ const Services = () => {
 
       {/* Services Bento Grid */}
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* 1. Virtualization & Cloud */}
-          <Link to="/services/cloud" className="md:col-span-8">
+          <Link to="/services/cloud" className="lg:col-span-8">
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="glass-card p-8 md:p-12 flex flex-col justify-between group hover:border-primary/30 transition-all neon-glow-cobalt overflow-hidden relative h-full"
+              className="glass-card p-6 sm:p-8 xl:p-12 flex flex-col justify-between group hover:border-primary/30 transition-all neon-glow-cobalt overflow-hidden relative h-full"
             >
               <div className="absolute inset-0 z-0">
                 <img 
@@ -105,11 +105,11 @@ const Services = () => {
               </div>
 
               <div className="relative z-10">
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
                     <Server className="w-8 h-8 text-secondary" />
                   </div>
-                  <h3 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold mb-0 text-on-surface leading-tight uppercase">{t({ en: 'Virtualization & Cloud', fr: 'Virtualisation & Cloud' })}</h3>
+                  <h3 className="font-headline text-[clamp(1.5rem,1rem+2vw,3rem)] min-w-0 font-bold mb-0 text-on-surface leading-tight uppercase">{t({ en: 'Virtualization & Cloud', fr: 'Virtualisation & Cloud' })}</h3>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 mb-10">
                   <ul className="space-y-6">
@@ -150,10 +150,10 @@ const Services = () => {
           </Link>
 
           {/* 2. Precision Web & Ecom Development */}
-          <Link to="/services/web-dev" className="md:col-span-4">
+          <Link to="/services/web-dev" className="lg:col-span-4">
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="bg-surface-container-low p-8 md:p-12 flex flex-col justify-between border border-outline-variant/10 neon-glow-violet group hover:border-secondary-container/40 transition-all overflow-hidden relative h-full"
+              className="bg-surface-container-low p-6 sm:p-8 xl:p-12 flex flex-col justify-between border border-outline-variant/10 neon-glow-violet group hover:border-secondary-container/40 transition-all overflow-hidden relative h-full"
             >
               <div className="absolute inset-0 z-0">
                 <img 
@@ -165,11 +165,11 @@ const Services = () => {
               </div>
 
               <div className="relative z-10">
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
                     <Globe className="w-8 h-8 text-secondary" />
                   </div>
-                  <h3 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface leading-tight uppercase">{t({ en: 'Web & Ecom Engineering', fr: 'Ingénierie Web & E-commerce' })}</h3>
+                  <h3 className="font-headline text-[clamp(1.375rem,1rem+1.25vw,2.25rem)] min-w-0 font-bold text-on-surface leading-tight uppercase">{t({ en: 'Web & Ecom Engineering', fr: 'Ingénierie Web & E-commerce' })}</h3>
                 </div>
                 <p className="text-on-surface-variant text-sm md:text-base mb-10 leading-relaxed">{t({ en: 'Bespoke builds focused on speed and clean architecture.', fr: 'Des réalisations sur mesure, axées sur la rapidité et une architecture propre.' })}</p>
                 <ul className="space-y-6">
@@ -198,10 +198,10 @@ const Services = () => {
           </Link>
 
           {/* 3. AI & Automation */}
-          <Link to="/services/ai-systems" className="md:col-span-5">
+          <Link to="/services/ai-systems" className="lg:col-span-5">
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="glass-card p-8 md:p-12 relative group border-outline-variant/5 neon-glow-cobalt overflow-hidden h-full"
+              className="glass-card p-6 sm:p-8 xl:p-12 relative group border-outline-variant/5 neon-glow-cobalt overflow-hidden h-full"
             >
               <div className="absolute inset-0 z-0">
                 <img 
@@ -213,11 +213,11 @@ const Services = () => {
               </div>
 
               <div className="flex flex-col h-full relative z-10">
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
                     <Brain className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface uppercase tracking-tight">{t({ en: 'AI & Automation', fr: 'IA & Automatisation' })}</h3>
+                  <h3 className="font-headline text-[clamp(1.375rem,1rem+1.25vw,2.25rem)] min-w-0 font-bold text-on-surface uppercase tracking-tight">{t({ en: 'AI & Automation', fr: 'IA & Automatisation' })}</h3>
                 </div>
                 <div className="space-y-6 md:space-y-8 flex-grow">
                   {[
@@ -241,10 +241,10 @@ const Services = () => {
           </Link>
 
           {/* 4. Shopify Integrations & App Development */}
-          <Link to="/services/shopify" className="md:col-span-7">
+          <Link to="/services/shopify" className="lg:col-span-7">
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="bg-surface-container-low p-8 md:p-12 relative overflow-hidden group border border-outline-variant/10 neon-glow-cobalt transition-all h-full"
+              className="bg-surface-container-low p-6 sm:p-8 xl:p-12 relative overflow-hidden group border border-outline-variant/10 neon-glow-cobalt transition-all h-full"
             >
               <div className="absolute inset-0 z-0">
                 <img 
@@ -256,13 +256,13 @@ const Services = () => {
               </div>
 
               <div className="relative z-10 flex flex-col h-full">
-                <div className="flex items-center gap-6 mb-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-primary-container/20 flex items-center justify-center neon-glow-cobalt border border-primary/20">
                     <ShoppingBag className="w-8 h-8 text-primary" />
                   </div>
-                  <h3 className="font-headline text-2xl sm:text-3xl md:text-4xl font-bold text-on-surface uppercase tracking-tight">{t({ en: 'Shopify & WordPress Development', fr: 'Développement Shopify & WordPress' })}</h3>
+                  <h3 className="font-headline text-[clamp(1.375rem,1rem+1.25vw,2.25rem)] min-w-0 font-bold text-on-surface uppercase tracking-tight">{t({ en: 'Shopify & WordPress Development', fr: 'Développement Shopify & WordPress' })}</h3>
                 </div>
-                <div className="grid grid-cols-2 gap-4 md:gap-6 mb-8">
+                <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-4 md:gap-6 mb-8">
                   {[
                     { icon: ShoppingBag, title: t({ en: "App Development", fr: "Développement d’apps" }) },
                     { icon: Code2, title: t({ en: "Plugin Engineering", fr: "Création de plugins" }) },
@@ -271,7 +271,7 @@ const Services = () => {
                   ].map((item, idx) => (
                     <div key={idx} className="p-5 md:p-6 bg-surface-container-highest/20 rounded-lg border border-outline-variant/10">
                       <item.icon className="text-primary w-6 h-6 md:w-8 md:h-8 mb-4" />
-                      <p className="font-headline text-[10px] md:text-xs text-on-surface font-bold uppercase tracking-widest">{item.title}</p>
+                      <p className="font-headline text-[10px] md:text-xs text-on-surface font-bold uppercase tracking-wider break-words">{item.title}</p>
                     </div>
                   ))}
                 </div>
@@ -284,10 +284,10 @@ const Services = () => {
           </Link>
 
           {/* 5. Graphic & Web Design */}
-          <Link to="/services/design" className="md:col-span-12">
+          <Link to="/services/design" className="lg:col-span-12">
             <motion.div 
               whileHover={{ scale: 1.01 }}
-              className="glass-card p-8 md:p-12 relative group border-outline-variant/5 neon-glow-violet overflow-hidden"
+              className="glass-card p-6 sm:p-8 xl:p-12 relative group border-outline-variant/5 neon-glow-violet overflow-hidden"
             >
               <div className="absolute inset-0 z-0">
                 <img 
@@ -303,11 +303,11 @@ const Services = () => {
               </div>
               <div className="relative z-10 flex flex-col gap-8 md:gap-16 md:flex-row lg:items-center">
                 <div className="flex-1">
-                  <div className="flex items-center gap-6 mb-8">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-8">
                   <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-secondary-container/20 flex items-center justify-center neon-glow-violet border border-secondary/20">
                     <Palette className="w-8 h-8 text-secondary" />
                   </div>
-                    <h3 className="font-headline text-3xl sm:text-4xl md:text-5xl font-bold text-on-surface uppercase tracking-tight">{t({ en: 'Graphic & Web Design', fr: 'Design Graphique & Web' })}</h3>
+                    <h3 className="font-headline text-[clamp(1.5rem,1rem+2vw,3rem)] min-w-0 font-bold text-on-surface uppercase tracking-tight">{t({ en: 'Graphic & Web Design', fr: 'Design Graphique & Web' })}</h3>
                   </div>
                   <p className="text-on-surface-variant text-sm md:text-base lg:text-xl leading-relaxed mb-10 max-w-2xl">{t({ en: 'Crafting cohesive visual identities and visually striking website layouts that align with modern aesthetics.', fr: 'Création d’identités visuelles cohérentes et de maquettes web marquantes, dans l’air du temps.' })}</p>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-8">

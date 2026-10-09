@@ -74,5 +74,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-headline;
+  /* Safety net: a word too long for its box wraps (hyphenated per <html lang>) instead of being cut off */
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 

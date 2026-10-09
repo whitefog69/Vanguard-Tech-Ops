@@ -41,7 +41,7 @@ const Home = () => {
         ></motion.div>
 
         <div className="relative z-10 max-w-7xl w-full flex flex-col lg:flex-row items-center justify-between gap-12 md:gap-16 pt-20 lg:pt-0">
-          <div className="text-center lg:text-left max-w-3xl">
+          <div className="text-center lg:text-left max-w-3xl lg:flex-1 min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -51,7 +51,7 @@ const Home = () => {
               <h2 className="font-body text-primary-fixed-dim uppercase tracking-[0.3em] text-xs sm:text-sm mb-6">
                 {t({ en: 'Foundational Excellence', fr: 'L’excellence comme fondation' })}
               </h2>
-              <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-on-surface mb-8 leading-tight">
+              <h1 className="font-headline text-[clamp(2.25rem,1rem+5.5vw,6rem)] font-bold tracking-tighter text-on-surface mb-8 leading-tight">
                 {t({ en: 'Technological', fr: 'Supériorité' })} <br/>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{t({ en: 'Superiority', fr: 'Technologique' })}</span>
               </h1>
@@ -75,7 +75,7 @@ const Home = () => {
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="flex flex-col gap-3 md:gap-4 relative z-20 w-full lg:w-auto"
+            className="flex flex-col gap-3 md:gap-4 relative z-20 w-full max-w-md lg:w-[340px] lg:shrink-0"
           >
             {[
               { title: t({ en: "Virtualization & Cloud", fr: "Virtualisation & Cloud" }), icon: Server, path: "/services/cloud" },
@@ -89,7 +89,7 @@ const Home = () => {
                   initial={{ opacity: 0, x: 50, scale: 0.9 }}
                   animate={{ opacity: 1, x: 0, scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.8 + idx * 0.1 }}
-                  className="bg-surface-container-lowest border border-primary/20 p-4 md:p-5 rounded-lg flex items-center gap-4 md:gap-5 shadow-[0_0_10px_rgba(177,197,255,0.05)] min-w-0 w-full lg:min-w-[340px] hover:shadow-[0_0_20px_rgba(177,197,255,0.1)] hover:border-primary transition-all duration-500 group hover:scale-[1.02]"
+                  className="bg-surface-container-lowest border border-primary/20 p-4 md:p-5 rounded-lg flex items-center gap-4 md:gap-5 shadow-[0_0_10px_rgba(177,197,255,0.05)] min-w-0 w-full hover:shadow-[0_0_20px_rgba(177,197,255,0.1)] hover:border-primary transition-all duration-500 group hover:scale-[1.02]"
                 >
                   <div className="w-8 h-8 md:w-10 md:h-10 flex-shrink-0 bg-surface-container-highest/30 rounded-md flex items-center justify-center border border-outline-variant/10 group-hover:border-primary/40 transition-all duration-300">
                     <item.icon className="w-4 h-4 md:w-5 md:h-5 text-primary opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300" />
@@ -206,7 +206,7 @@ const Home = () => {
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               { title: t({ en: "100% SECURE & RELIABLE", fr: "100 % SÛR & FIABLE" }), icon: Shield },
               { title: t({ en: "DATA SOVEREIGNTY ASSURED", fr: "SOUVERAINETÉ DES DONNÉES" }), icon: Key },
@@ -226,7 +226,7 @@ const Home = () => {
                   </div>
                 </div>
                 
-                <h3 className="font-headline text-base sm:text-lg font-bold tracking-widest text-on-surface uppercase">{g.title}</h3>
+                <h3 className="font-headline text-base sm:text-lg font-bold tracking-wider text-on-surface uppercase">{g.title}</h3>
               </motion.div>
             ))}
           </div>
@@ -239,7 +239,7 @@ const Home = () => {
           {t({ en: 'Institutional', fr: 'Nos' })} <span className="text-primary italic">{t({ en: 'Metrics', fr: 'Chiffres' })}</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 text-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 sm:gap-16 text-center">
           {[
             { value: t({ en: "99.9%", fr: "99,9 %" }), label: t({ en: "SUCCESS RATE", fr: "TAUX DE RÉUSSITE" }) },
             { value: "80+", label: t({ en: "PROJECTS COMPLETED", fr: "PROJETS RÉALISÉS" }) },
@@ -253,7 +253,7 @@ const Home = () => {
               transition={{ delay: i * 0.1 }}
               className="space-y-4 group"
             >
-              <div className="font-headline text-6xl sm:text-7xl md:text-9xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary-container tracking-tighter">
+              <div className="font-headline text-[clamp(3.5rem,1rem+6vw,8rem)] whitespace-nowrap font-bold text-transparent bg-clip-text bg-gradient-to-b from-primary to-primary-container tracking-tighter">
                 {m.value}
               </div>
               <div className="font-body text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.4em] text-outline uppercase opacity-60 group-hover:opacity-100 transition-opacity">
