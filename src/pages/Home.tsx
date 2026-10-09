@@ -3,13 +3,18 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart, Star } from 'lucide-react';
 import SEO from '../components/SEO';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 const Home = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen">
-      <SEO 
-        title="Vanguard Tech Ops" 
-        description="We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience."
+      <SEO
+        title="Vanguard Tech Ops"
+        description={t({
+          en: "We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience.",
+          fr: "Nous concevons des environnements numériques souverains où sécurité, intelligence et performance convergent vers une résilience sans faille."
+        })}
       />
       {/* Unified Hero & CTA Section */}
       <section className="relative min-h-screen lg:h-screen flex flex-col items-center justify-center lg:py-0 px-6 overflow-hidden">
@@ -44,19 +49,22 @@ const Home = () => {
               className="flex flex-col items-center lg:items-start"
             >
               <h2 className="font-body text-primary-fixed-dim uppercase tracking-[0.3em] text-xs sm:text-sm mb-6">
-                Foundational Excellence
+                {t({ en: 'Foundational Excellence', fr: 'L’excellence comme fondation' })}
               </h2>
               <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-on-surface mb-8 leading-tight">
-                Technological <br/>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Superiority</span>
+                {t({ en: 'Technological', fr: 'Supériorité' })} <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">{t({ en: 'Superiority', fr: 'Technologique' })}</span>
               </h1>
               <p className="font-body text-on-surface-variant text-base sm:text-lg md:text-xl max-w-2xl lg:mx-0 mx-auto leading-relaxed opacity-80">
-                We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience.
+                {t({
+                  en: 'We architect sovereign digital environments where security, intelligence, and performance converge into singular system resilience.',
+                  fr: 'Nous concevons des environnements numériques souverains où sécurité, intelligence et performance convergent vers une résilience sans faille.'
+                })}
               </p>
-              
+
               <div className="mt-10 md:mt-12 flex flex-col sm:flex-row gap-6 justify-center lg:justify-start w-full sm:w-auto">
                 <Link to="/contact" className="px-8 py-4 bg-primary-container text-white font-headline font-bold tracking-widest uppercase text-sm flex items-center justify-center gap-3 hover:bg-primary-container/80 transition-all active:scale-95 shadow-[0_0_15px_rgba(177,197,255,0.1)]">
-                  Initialize Protocol <ArrowRight className="w-5 h-5" />
+                  {t({ en: 'Initialize Protocol', fr: 'Lancer le projet' })} <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>
             </motion.div>
@@ -70,11 +78,11 @@ const Home = () => {
             className="flex flex-col gap-3 md:gap-4 relative z-20 w-full lg:w-auto"
           >
             {[
-              { title: "Virtualization & Cloud", icon: Server, path: "/services/cloud" },
-              { title: "Precision Web & Ecom Development", icon: Globe, path: "/services/web-dev" },
-              { title: "AI & Automation", icon: Brain, path: "/services/ai-systems" },
-              { title: "Shopify & WordPress Development", icon: ShoppingBag, path: "/services/shopify" },
-              { title: "Graphic & Web Design", icon: Palette, path: "/services/design" },
+              { title: t({ en: "Virtualization & Cloud", fr: "Virtualisation & Cloud" }), icon: Server, path: "/services/cloud" },
+              { title: t({ en: "Precision Web & Ecom Development", fr: "Développement Web & E-commerce" }), icon: Globe, path: "/services/web-dev" },
+              { title: t({ en: "AI & Automation", fr: "IA & Automatisation" }), icon: Brain, path: "/services/ai-systems" },
+              { title: t({ en: "Shopify & WordPress Development", fr: "Développement Shopify & WordPress" }), icon: ShoppingBag, path: "/services/shopify" },
+              { title: t({ en: "Graphic & Web Design", fr: "Design Graphique & Web" }), icon: Palette, path: "/services/design" },
             ].map((item, idx) => (
               <Link key={idx} to={item.path} className="w-full">
                 <motion.div
@@ -102,10 +110,10 @@ const Home = () => {
             className="relative z-10 w-full max-w-7xl px-6 mt-16 md:mt-24 text-center border-t border-outline-variant/30 pt-12 transform-gpu"
         >
             <h2 className="font-headline text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-6 tracking-tighter uppercase">
-                Ready to Architect Your <span className="italic font-light text-primary">Sovereignty</span>?
+                {t({ en: 'Ready to Architect Your', fr: 'Prêt à bâtir votre' })} <span className="italic font-light text-primary">{t({ en: 'Sovereignty', fr: 'souveraineté' })}</span>{t({ en: '?', fr: ' ?' })}
             </h2>
             <Link to="/about" className="px-8 sm:px-12 py-4 sm:py-5 border border-outline-variant/60 text-on-surface font-headline font-bold tracking-widest uppercase hover:bg-surface-container-highest/20 transition-all text-[10px] sm:text-xs md:text-sm">
-                View Technical Manifesto
+                {t({ en: 'View Technical Manifesto', fr: 'Voir notre manifeste technique' })}
             </Link>
         </motion.div>
       </section>
@@ -119,7 +127,7 @@ const Home = () => {
             viewport={{ once: true }}
             className="font-body text-primary tracking-[0.4em] uppercase text-[10px] sm:text-xs mb-4 block font-bold"
           >
-            Verified Performance
+            {t({ en: 'Verified Performance', fr: 'Performance vérifiée' })}
           </motion.span>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
@@ -128,7 +136,7 @@ const Home = () => {
             transition={{ delay: 0.1 }}
             className="font-headline text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-on-surface uppercase"
             >
-            CLIENT <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic pr-[0.15em]">REVIEWS</span>
+            {t({ en: 'CLIENT', fr: 'AVIS' })} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic pr-[0.15em]">{t({ en: 'REVIEWS', fr: 'CLIENTS' })}</span>
           </motion.h2>
         </div>
 
@@ -137,23 +145,32 @@ const Home = () => {
           {[
             {
               name: "Marcus Thorne",
-              role: "Tech Manager, SaaS Solutions",
-              service: "AI & Automation",
-              content: "Implementing their AI & Automation suite revolutionized our internal workflows. As a tech manager, I value stability and efficiency; their autonomous agents delivered both, drastically reducing our operational overhead.",
+              role: t({ en: "Tech Manager, SaaS Solutions", fr: "Responsable technique, SaaS Solutions" }),
+              service: t({ en: "AI & Automation", fr: "IA & Automatisation" }),
+              content: t({
+                en: "Implementing their AI & Automation suite revolutionized our internal workflows. As a tech manager, I value stability and efficiency; their autonomous agents delivered both, drastically reducing our operational overhead.",
+                fr: "La mise en place de leur suite IA & Automatisation a transformé nos processus internes. En tant que responsable technique, je tiens à la stabilité et à l’efficacité ; leurs agents autonomes ont apporté les deux et considérablement réduit nos coûts opérationnels."
+              }),
               stars: 5
             },
             {
               name: "Maya Patel",
-              role: "Entrepreneur, Online Seller",
-              service: "Web & E-commerce",
-              content: "The web and E-commerce development they provided completely transformed my storefront. My site is now faster, more secure, and perfectly tailored for high-volume sales. My conversion rates have never looked better.",
+              role: t({ en: "Entrepreneur, Online Seller", fr: "Entrepreneur, vente en ligne" }),
+              service: t({ en: "Web & E-commerce", fr: "Web & E-commerce" }),
+              content: t({
+                en: "The web and E-commerce development they provided completely transformed my storefront. My site is now faster, more secure, and perfectly tailored for high-volume sales. My conversion rates have never looked better.",
+                fr: "Leur travail de développement web et e-commerce a complètement transformé ma boutique. Mon site est désormais plus rapide, plus sûr et parfaitement adapté à un volume de ventes élevé. Mes taux de conversion n’ont jamais été aussi bons."
+              }),
               stars: 5
             },
             {
               name: "Alex Rivera",
-              role: "Cybersecurity Student",
-              service: "Security & Cloud",
-              content: "For my research, I analyzed their virtualization protocols and found their implementation of digital sovereignty and hardened environments to be genuinely impressive. The best-practice architecture they use is a gold standard.",
+              role: t({ en: "Cybersecurity Student", fr: "Étudiant en cybersécurité" }),
+              service: t({ en: "Security & Cloud", fr: "Sécurité & Cloud" }),
+              content: t({
+                en: "For my research, I analyzed their virtualization protocols and found their implementation of digital sovereignty and hardened environments to be genuinely impressive. The best-practice architecture they use is a gold standard.",
+                fr: "Dans le cadre de mes recherches, j’ai analysé leurs protocoles de virtualisation et leur mise en œuvre de la souveraineté numérique et des environnements renforcés est vraiment impressionnante. Leur architecture fondée sur les bonnes pratiques est une référence."
+              }),
               stars: 5
             }
           ].map((t, i) => (
@@ -198,17 +215,17 @@ const Home = () => {
       <section className="py-16 md:py-32 px-6 bg-surface-container-lowest/10">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col items-center text-center mb-12 md:mb-20">
-            <span className="font-body text-secondary tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 font-bold">Unwavering Standards</span>
+            <span className="font-body text-secondary tracking-[0.3em] uppercase text-[10px] sm:text-xs mb-4 font-bold">{t({ en: 'Unwavering Standards', fr: 'Des standards sans compromis' })}</span>
             <h2 className="font-headline text-3xl sm:text-5xl md:text-6xl font-bold text-on-surface uppercase tracking-tight">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container italic pr-[0.15em]">Guarantee</span>
+              {t({ en: 'Our', fr: 'Notre' })} <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container italic pr-[0.15em]">{t({ en: 'Guarantee', fr: 'Garantie' })}</span>
             </h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
-              { title: "100% SECURE & RELIABLE", icon: Shield },
-              { title: "DATA SOVEREIGNTY ASSURED", icon: Key },
-              { title: "PERFORMANCE OPTIMIZATION", icon: Bolt }
+              { title: t({ en: "100% SECURE & RELIABLE", fr: "100 % SÛR & FIABLE" }), icon: Shield },
+              { title: t({ en: "DATA SOVEREIGNTY ASSURED", fr: "SOUVERAINETÉ DES DONNÉES" }), icon: Key },
+              { title: t({ en: "PERFORMANCE OPTIMIZATION", fr: "PERFORMANCE OPTIMISÉE" }), icon: Bolt }
             ].map((g, i) => (
               <motion.div 
                 key={i}
@@ -234,14 +251,14 @@ const Home = () => {
       {/* Metrics Section */}
       <section className="py-16 md:py-32 px-6 max-w-7xl mx-auto">
         <h2 className="font-headline text-2xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-24 uppercase tracking-tighter text-on-surface">
-          Institutional <span className="text-primary italic">Metrics</span>
+          {t({ en: 'Institutional', fr: 'Nos' })} <span className="text-primary italic">{t({ en: 'Metrics', fr: 'Chiffres' })}</span>
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 text-center">
           {[
-            { value: "99.9%", label: "SUCCESS RATE" },
-            { value: "80+", label: "PROJECTS COMPLETED" },
-            { value: "4+", label: "YEARS OF EXCELLENCE" }
+            { value: t({ en: "99.9%", fr: "99,9 %" }), label: t({ en: "SUCCESS RATE", fr: "TAUX DE RÉUSSITE" }) },
+            { value: "80+", label: t({ en: "PROJECTS COMPLETED", fr: "PROJETS RÉALISÉS" }) },
+            { value: "4+", label: t({ en: "YEARS OF EXCELLENCE", fr: "ANS D’EXCELLENCE" }) }
           ].map((m, i) => (
             <motion.div 
               key={i}

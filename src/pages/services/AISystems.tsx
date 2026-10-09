@@ -9,6 +9,7 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 import CTASection from '../../components/CTASection';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   constructor(props: {children: React.ReactNode}) {
@@ -131,11 +132,15 @@ const RoboticAssembler = () => {
 };
 
 const AISystemsPage = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background text-on-surface">
-      <SEO 
-        title="AI & Autonomous Automation" 
-        description="Engineering high-performance AI systems and autonomous workflows. Custom LLM integrations, intelligent bots, and operational automation for technical dominance."
+      <SEO
+        title={t({ en: "AI & Autonomous Automation", fr: "IA & automatisation autonome" })}
+        description={t({
+          en: "Engineering high-performance AI systems and autonomous workflows. Custom LLM integrations, intelligent bots, and operational automation for technical dominance.",
+          fr: "Conception de systèmes IA performants et de workflows autonomes : intégrations de LLM sur mesure, bots intelligents et automatisation de vos opérations."
+        })}
       />
       {/* Hero Section */}
       <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
@@ -165,10 +170,13 @@ const AISystemsPage = () => {
               <Brain className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
             <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
-              AI & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Automation</span>
+              {t({ en: 'AI &', fr: 'IA &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">{t({ en: 'Automation', fr: 'Automatisation' })}</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
-              Creating custom bots and autonomous systems to handle specialized logic and eliminate manual operational tasks.
+              {t({
+                en: 'Creating custom bots and autonomous systems to handle specialized logic and eliminate manual operational tasks.',
+                fr: 'Création de bots sur mesure et de systèmes autonomes pour gérer une logique spécifique et éliminer les tâches manuelles.'
+              })}
             </p>
           </motion.div>
         </div>
@@ -178,11 +186,11 @@ const AISystemsPage = () => {
       <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
-            { icon: Bot, title: "Intelligent AI Bots", desc: "Creating custom bots to handle specialized logic and user interaction." },
-            { icon: Brain, title: "AI Integration", desc: "Embedding advanced AI capabilities directly into your existing software." },
-            { icon: Code2, title: "Custom App Dev", desc: "Engineering proprietary apps to solve unique business challenges." },
-            { icon: Zap, title: "API Integrations", desc: "Connecting disparate tools through secure, high-speed API bridges." },
-            { icon: Workflow, title: "Workflow Automation", desc: "Designing automated systems to eliminate manual operational tasks." }
+            { icon: Bot, title: t({ en: "Intelligent AI Bots", fr: "Bots IA intelligents" }), desc: t({ en: "Creating custom bots to handle specialized logic and user interaction.", fr: "Des bots sur mesure pour gérer vos règles métier et dialoguer avec vos utilisateurs." }) },
+            { icon: Brain, title: t({ en: "AI Integration", fr: "Intégration de l’IA" }), desc: t({ en: "Embedding advanced AI capabilities directly into your existing software.", fr: "Des capacités d’IA avancées intégrées directement à vos logiciels existants." }) },
+            { icon: Code2, title: t({ en: "Custom App Dev", fr: "Applications sur mesure" }), desc: t({ en: "Engineering proprietary apps to solve unique business challenges.", fr: "Des applications conçues pour répondre aux défis propres à votre activité." }) },
+            { icon: Zap, title: t({ en: "API Integrations", fr: "Intégrations API" }), desc: t({ en: "Connecting disparate tools through secure, high-speed API bridges.", fr: "Vos outils connectés entre eux grâce à des API sûres et rapides." }) },
+            { icon: Workflow, title: t({ en: "Workflow Automation", fr: "Automatisation des processus" }), desc: t({ en: "Designing automated systems to eliminate manual operational tasks.", fr: "Des systèmes automatisés pour éliminer les tâches manuelles répétitives." }) }
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -239,13 +247,13 @@ const AISystemsPage = () => {
             className="space-y-6 md:space-y-8"
           >
             <h2 className="font-headline text-3xl md:text-4xl font-black tracking-tighter text-on-surface uppercase">
-              OPERATIONAL <span className="text-secondary italic">INTELLIGENCE</span>
+              {t({ en: 'OPERATIONAL', fr: 'INTELLIGENCE' })} <span className="text-secondary italic pr-[0.15em]">{t({ en: 'INTELLIGENCE', fr: 'OPÉRATIONNELLE' })}</span>
             </h2>
             <div className="space-y-4 md:space-y-6">
               {[
-                { label: "99.8% Logic Accuracy", desc: "Custom-trained models ensuring near-perfect execution of complex business rules." },
-                { label: "Autonomous Decision-Making", desc: "Real-time processing via secure agent swarms with 40ms latency thresholds." },
-                { label: "Zero-Manual Overhead", desc: "Elimination of repetitive operational tasks through 1.5M token context windows." }
+                { label: t({ en: "99.8% Logic Accuracy", fr: "Précision logique de 99,8 %" }), desc: t({ en: "Custom-trained models ensuring near-perfect execution of complex business rules.", fr: "Des modèles entraînés sur mesure pour appliquer vos règles métier complexes de façon quasi parfaite." }) },
+                { label: t({ en: "Autonomous Decision-Making", fr: "Prise de décision autonome" }), desc: t({ en: "Real-time processing via secure agent swarms with 40ms latency thresholds.", fr: "Traitement en temps réel par des agents sécurisés, avec une latence de 40 ms." }) },
+                { label: t({ en: "Zero-Manual Overhead", fr: "Zéro tâche manuelle" }), desc: t({ en: "Elimination of repetitive operational tasks through 1.5M token context windows.", fr: "Suppression des tâches répétitives grâce à des fenêtres de contexte de 1,5 M de tokens." }) }
               ].map((point, i) => (
                 <div key={i} className="flex gap-4 md:gap-6 group">
                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
@@ -271,12 +279,12 @@ const AISystemsPage = () => {
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">Intelligence Architecture</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">{t({ en: 'Intelligence Architecture', fr: 'Architecture de l’IA' })}</h2>
             <div className="space-y-4 md:space-y-6">
               {[
-                { name: "Vector Search Core", tool: "Pinecone / Qdrant" },
-                { name: "LLM Orchestration", tool: "LangChain / LLamaIndex" },
-                { name: "Foundation Models", tool: "Gemini Pro / Claude 3" },
+                { name: t({ en: "Vector Search Core", fr: "Recherche vectorielle" }), tool: "Pinecone / Qdrant" },
+                { name: t({ en: "LLM Orchestration", fr: "Orchestration de LLM" }), tool: "LangChain / LLamaIndex" },
+                { name: t({ en: "Foundation Models", fr: "Modèles de fondation" }), tool: "Gemini Pro / Claude 3" },
               ].map((layer, i) => (
                 <div key={i} className="flex flex-col sm:flex-row justify-between items-center bg-surface-container-low p-4 md:p-5 rounded-lg border border-outline-variant/10 gap-3">
                   <div className="flex items-center gap-4">

@@ -9,6 +9,7 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 import CTASection from '../../components/CTASection';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   state = { hasError: false };
@@ -103,11 +104,15 @@ const ModularHub = () => {
 const Cylinder = ({ args, ...props }: any) => <mesh {...props}><cylinderGeometry args={args} /><meshBasicMaterial color="white" /></mesh>;
 
 const ShopifyPage = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background text-on-surface">
-      <SEO 
-        title="Shopify & E-commerce Engineering" 
-        description="Engineering proprietary Shopify apps and technical automation. High-performance WordPress integrations and headless e-commerce solutions for rapid scaling."
+      <SEO
+        title={t({ en: "Shopify & E-commerce Engineering", fr: "Développement Shopify & e-commerce" })}
+        description={t({
+          en: "Engineering proprietary Shopify apps and technical automation. High-performance WordPress integrations and headless e-commerce solutions for rapid scaling.",
+          fr: "Applications Shopify sur mesure et automatisations techniques. Intégrations WordPress performantes et solutions e-commerce headless pour grandir rapidement."
+        })}
       />
       {/* Hero Section */}
       <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
@@ -115,7 +120,7 @@ const ShopifyPage = () => {
         <div className="absolute inset-0 z-0">
           <img 
             src={`${import.meta.env.BASE_URL}assets/services/shopify/Shopify banner 2.png`} 
-            alt="Shopify & WordPress Background" 
+            alt=""
             className="w-full h-full object-cover"
           />
         </div>
@@ -134,10 +139,13 @@ const ShopifyPage = () => {
               <ShoppingBag className="w-8 h-8 md:w-12 md:h-12 text-primary animate-pulse" />
             </div>
             <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
-              Shopify, WordPress & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">App Development</span>
+              Shopify, WordPress & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-container neon-glow-cobalt">{t({ en: 'App Development', fr: 'Développement d’apps' })}</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
-              Engineering proprietary apps and technical automation to ensure your store scales effortlessly with demand.
+              {t({
+                en: 'Engineering proprietary apps and technical automation to ensure your store scales effortlessly with demand.',
+                fr: 'Conception d’applications sur mesure et d’automatisations pour que votre boutique suive la demande sans effort.'
+              })}
             </p>
           </motion.div>
         </div>
@@ -147,11 +155,11 @@ const ShopifyPage = () => {
       <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
-            { icon: ShoppingBag, title: "Shopify App Development", desc: "Engineering custom private or public apps to extend Shopify’s native functionality and streamline your store's operations." },
-            { icon: Code2, title: "WordPress Plugin Engineering", desc: "Developing bespoke plugins to enhance WordPress core features, ensuring your site performs exactly how your business requires." },
-            { icon: Workflow, title: "Workflow Automation", desc: "Streamlining backend e-commerce operations for efficiency." },
-            { icon: RefreshCw, title: "Logic Syncing", desc: "Integrating store data with external inventory and management tools." },
-            { icon: BarChart, title: "Performance Scaling", desc: "Technical automation to ensure your store scales effortlessly with demand." }
+            { icon: ShoppingBag, title: t({ en: "Shopify App Development", fr: "Développement d’apps Shopify" }), desc: t({ en: "Engineering custom private or public apps to extend Shopify’s native functionality and streamline your store's operations.", fr: "Des applications privées ou publiques sur mesure pour étendre les fonctionnalités de Shopify et simplifier la gestion de votre boutique." }) },
+            { icon: Code2, title: t({ en: "WordPress Plugin Engineering", fr: "Création de plugins WordPress" }), desc: t({ en: "Developing bespoke plugins to enhance WordPress core features, ensuring your site performs exactly how your business requires.", fr: "Des plugins sur mesure qui enrichissent WordPress pour que votre site fonctionne exactement comme votre activité l’exige." }) },
+            { icon: Workflow, title: t({ en: "Workflow Automation", fr: "Automatisation des processus" }), desc: t({ en: "Streamlining backend e-commerce operations for efficiency.", fr: "Des opérations e-commerce simplifiées pour gagner en efficacité." }) },
+            { icon: RefreshCw, title: t({ en: "Logic Syncing", fr: "Synchronisation des données" }), desc: t({ en: "Integrating store data with external inventory and management tools.", fr: "Les données de votre boutique reliées à vos outils de stock et de gestion." }) },
+            { icon: BarChart, title: t({ en: "Performance Scaling", fr: "Montée en charge" }), desc: t({ en: "Technical automation to ensure your store scales effortlessly with demand.", fr: "Des automatisations techniques pour que votre boutique suive la demande sans effort." }) }
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -213,13 +221,13 @@ const ShopifyPage = () => {
             className="space-y-6 md:space-y-8"
           >
             <h2 className="font-headline text-3xl md:text-4xl font-black tracking-tighter text-on-surface uppercase">
-              ECOMMERCE <span className="text-primary italic">COMMAND</span>
+              {t({ en: 'ECOMMERCE', fr: 'MAÎTRISE' })} <span className="text-primary italic pr-[0.15em]">{t({ en: 'COMMAND', fr: 'E-COMMERCE' })}</span>
             </h2>
             <div className="space-y-4 md:space-y-6">
               {[
-                { label: "Proprietary App Logic", desc: "Custom Shopify/WordPress extensions designed for unlimited horizontal scaling." },
-                { label: "Elastic Performance", desc: "Auto-scaling infrastructure that maintains <40ms latency during peak traffic." },
-                { label: "Real-Time Data Mesh", desc: "Seamless GraphQL-driven synchronization between storefronts and inventory systems." }
+                { label: t({ en: "Proprietary App Logic", fr: "Logique applicative sur mesure" }), desc: t({ en: "Custom Shopify/WordPress extensions designed for unlimited horizontal scaling.", fr: "Des extensions Shopify/WordPress sur mesure, conçues pour évoluer sans limite." }) },
+                { label: t({ en: "Elastic Performance", fr: "Performance élastique" }), desc: t({ en: "Auto-scaling infrastructure that maintains <40ms latency during peak traffic.", fr: "Une infrastructure qui s’adapte automatiquement et maintient une latence inférieure à 40 ms en pic de trafic." }) },
+                { label: t({ en: "Real-Time Data Mesh", fr: "Données en temps réel" }), desc: t({ en: "Seamless GraphQL-driven synchronization between storefronts and inventory systems.", fr: "Synchronisation fluide via GraphQL entre vos boutiques et vos systèmes de stock." }) }
               ].map((point, i) => (
                 <div key={i} className="flex gap-4 md:gap-6 group">
                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(0,71,171,0.8)]" />
@@ -271,12 +279,12 @@ const ShopifyPage = () => {
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface">Storefront Engine Matrix</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface">{t({ en: 'Storefront Engine Matrix', fr: 'Le moteur de votre boutique' })}</h2>
             <div className="space-y-4">
               {[
-                { label: "State Validation", val: "GraphQL Admin API Native" },
-                { label: "Sync Engine", val: "Real-Time Inventory Mesh" },
-                { label: "Checkout", val: "Bespoke Extensions" },
+                { label: t({ en: "State Validation", fr: "Validation des données" }), val: t({ en: "GraphQL Admin API Native", fr: "API Admin GraphQL native" }) },
+                { label: t({ en: "Sync Engine", fr: "Synchronisation" }), val: t({ en: "Real-Time Inventory Mesh", fr: "Stock en temps réel" }) },
+                { label: t({ en: "Checkout", fr: "Paiement" }), val: t({ en: "Bespoke Extensions", fr: "Extensions sur mesure" }) },
               ].map((obj, i) => (
                 <div key={i} className="flex flex-col sm:flex-row justify-between p-4 bg-surface-container-low rounded border border-outline-variant/10">
                   <span className="font-headline text-on-surface uppercase text-xs md:text-sm tracking-widest font-bold">{obj.label}</span>

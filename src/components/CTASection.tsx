@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 const CTASection = () => {
+  const { t } = useLanguage();
   return (
     <section className="py-16 md:py-24 px-6">
       <motion.div 
@@ -13,7 +15,7 @@ const CTASection = () => {
       >
         <div className="relative z-10">
           <Link to="/contact" className="inline-block px-12 md:px-16 py-5 md:py-6 bg-gradient-to-r from-primary-container to-secondary-container text-white font-headline font-bold tracking-widest uppercase shadow-2xl hover:scale-105 transition-transform active:scale-95 text-xs md:text-sm lg:text-base">
-            Contact us
+            {t({ en: 'Contact us', fr: 'Nous contacter' })}
           </Link>
         </div>
       </motion.div>

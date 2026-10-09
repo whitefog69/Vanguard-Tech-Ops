@@ -5,6 +5,8 @@ import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { siteData, PageData } from '@/src/lib/services-data';
 import { openCookieSettings } from '@/src/lib/consent';
+import { useLanguage } from '@/src/i18n/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const iconMap = {
   Server,
@@ -18,6 +20,7 @@ const iconMap = {
 
 export const Navbar = () => {
   const location = useLocation();
+  const { t } = useLanguage();
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -37,7 +40,7 @@ export const Navbar = () => {
     }
 
     const filtered = siteData.filter((page) =>
-      page.title.toLowerCase().startsWith(term) ||
+      [page.title.en, page.title.fr].some((title) => title.toLowerCase().startsWith(term)) ||
       page.keywords.some((keyword) => keyword.toLowerCase().startsWith(term))
     );
     setSearchResults(filtered);
@@ -55,16 +58,16 @@ export const Navbar = () => {
   }, []);
 
   const serviceLinks = [
-    { name: 'Virtualization & Cloud', path: '/services/cloud' },
-    { name: 'Precision Web & Ecom Development', path: '/services/web-dev' },
-    { name: 'AI & Automation', path: '/services/ai-systems' },
-    { name: 'Shopify, WordPress Integrations & App Development', path: '/services/shopify' },
-    { name: 'Graphic & Web Design', path: '/services/design' },
+    { name: t({ en: 'Virtualization & Cloud', fr: 'Virtualisation & Cloud' }), path: '/services/cloud' },
+    { name: t({ en: 'Precision Web & Ecom Development', fr: 'Développement Web & E-commerce' }), path: '/services/web-dev' },
+    { name: t({ en: 'AI & Automation', fr: 'IA & Automatisation' }), path: '/services/ai-systems' },
+    { name: t({ en: 'Shopify, WordPress Integrations & App Development', fr: 'Intégrations Shopify, WordPress & Développement d’apps' }), path: '/services/shopify' },
+    { name: t({ en: 'Graphic & Web Design', fr: 'Design Graphique & Web' }), path: '/services/design' },
   ];
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
+    { name: t({ en: 'Home', fr: 'Accueil' }), path: '/' },
+    { name: t({ en: 'About Us', fr: 'À propos' }), path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -83,7 +86,7 @@ export const Navbar = () => {
       </div>
 
       {/* Center: Navigation Links */}
-      <div className="hidden md:flex gap-8 items-center justify-center">
+      <div className="hidden md:flex gap-5 lg:gap-8 items-center justify-center px-4">
         <Link 
           to="/" 
           className={cn(
@@ -91,7 +94,7 @@ export const Navbar = () => {
             location.pathname === '/' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
           )}
         >
-          Home
+          {t({ en: 'Home', fr: 'Accueil' })}
         </Link>
         <Link 
           to="/about" 
@@ -100,7 +103,7 @@ export const Navbar = () => {
             location.pathname === '/about' ? "text-on-surface" : "text-on-surface/60 hover:text-on-surface"
           )}
         >
-          about us
+          {t({ en: 'About Us', fr: 'À propos' })}
         </Link>
         
         <div 
@@ -141,7 +144,7 @@ export const Navbar = () => {
                       to="/services"
                       className="block px-6 py-3 text-[10px] font-headline uppercase tracking-[0.2em] text-primary/60 hover:text-on-surface"
                     >
-                      View All Services
+                      {t({ en: 'View All Services', fr: 'Voir tous les services' })}
                     </Link>
                   </div>
                 </div>
@@ -162,12 +165,12 @@ export const Navbar = () => {
       </div>
       
       {/* Right side: Actions */}
-      <div className="flex-1 flex items-center justify-end gap-6">
-        <div ref={searchRef} className="hidden lg:flex items-center bg-surface-container-lowest border border-outline-variant/20 px-4 py-2 rounded-full relative">
+      <div className="flex-1 flex items-center justify-end gap-3 lg:gap-5">
+        <div ref={searchRef} className="hidden xl:flex items-center bg-surface-container-lowest border border-outline-variant/20 px-4 py-2 rounded-full relative">
           <Search className="text-on-surface-variant w-4 h-4 mr-2" />
           <input 
             className="bg-transparent border-none text-xs tracking-widest focus:outline-none w-32 placeholder:text-on-surface-variant/40" 
-            placeholder="SYSTEM SEARCH" 
+            placeholder={t({ en: 'SYSTEM SEARCH', fr: 'RECHERCHE' })}
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -195,27 +198,30 @@ export const Navbar = () => {
                         <Icon className="w-4 h-4 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-headline text-xs font-bold text-on-surface uppercase tracking-widest mb-0.5">{result.title}</h4>
-                        <p className="text-[9px] text-on-surface-variant truncate">{result.description}</p>
+                        <h4 className="font-headline text-xs font-bold text-on-surface uppercase tracking-widest mb-0.5">{t(result.title)}</h4>
+                        <p className="text-[9px] text-on-surface-variant truncate">{t(result.description)}</p>
                       </div>
                     </Link>
                   );
                 })
                 ) : (
                 <div className="px-6 py-4 text-xs font-headline uppercase text-on-surface-variant/50">
-                  No results found
+                  {t({ en: 'No results found', fr: 'Aucun résultat' })}
                 </div>
                 )}              </motion.div>
             )}
           </AnimatePresence>
         </div>
         
-        <Link to="/contact" className="hidden md:block bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)] whitespace-nowrap">
-          Consult Now
+        <Link to="/contact" className="hidden lg:block bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)] whitespace-nowrap">
+          {t({ en: 'Consult Now', fr: 'Consultation' })}
         </Link>
-        <button 
+        <LanguageSwitcher />
+        <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={isMobileMenuOpen
+            ? t({ en: 'Close navigation menu', fr: 'Fermer le menu' })
+            : t({ en: 'Open navigation menu', fr: 'Ouvrir le menu' })}
           className="md:hidden p-2 text-primary hover:bg-primary/10 transition-colors rounded-lg"
         >
           <Terminal className="w-6 h-6" />
@@ -245,7 +251,7 @@ export const Navbar = () => {
                 </Link>
               ))}
               <div className="pt-4 border-t border-outline-variant/10">
-                <p className="text-[10px] font-headline uppercase tracking-[0.2em] text-on-surface-variant/40 mb-4 px-4">Our Services</p>
+                <p className="text-[10px] font-headline uppercase tracking-[0.2em] text-on-surface-variant/40 mb-4 px-4">{t({ en: 'Our Services', fr: 'Nos services' })}</p>
                 <div className="grid grid-cols-1 gap-2">
                   {serviceLinks.map((service) => (
                     <Link
@@ -262,7 +268,7 @@ export const Navbar = () => {
                 to="/contact" 
                 className="mt-4 bg-primary text-on-primary text-center py-4 font-headline font-bold uppercase tracking-[0.2em] rounded-sm shadow-[0_0_20px_rgba(0,71,171,0.3)]"
               >
-                Launch Consultation
+                {t({ en: 'Launch Consultation', fr: 'Lancer une consultation' })}
               </Link>
             </div>
           </motion.div>
@@ -275,6 +281,7 @@ export const Navbar = () => {
 
 
 export const Footer = () => {
+  const { t } = useLanguage();
   const techStack = [
     { name: 'WordPress', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/wordpress.png`} alt="WordPress" className="w-6 h-6 object-contain" /> },
     { name: 'Shopify', icon: <img src={`${import.meta.env.BASE_URL}assets/icons/shopify.png`} alt="Shopify" className="w-6 h-6 object-contain" /> },
@@ -293,7 +300,7 @@ export const Footer = () => {
       <div className="py-20 border-b border-outline-variant/10">
         <div className="max-w-7xl mx-auto px-8">
           <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface text-center mb-16 tracking-tight">
-            Powering Your Digital Ecosystem
+            {t({ en: 'Powering Your Digital Ecosystem', fr: 'Au cœur de votre écosystème numérique' })}
           </h2>
 
           <div className="relative overflow-hidden group">
@@ -353,14 +360,14 @@ export const Footer = () => {
             alt="Vanguard Tech Ops"
             className="h-24 w-auto object-contain brightness-0 invert opacity-80"
           />
-          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">Vanguard Tech Ops. Technical Authority Secured.</p>
+          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">{t({ en: 'Vanguard Tech Ops. Technical Authority Secured.', fr: 'Vanguard Tech Ops. L’excellence technique, garantie.' })}</p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-body text-xs text-on-surface/50">
-          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-          <Link to="/terms" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link>
-          <button onClick={openCookieSettings} className="hover:text-primary transition-colors">Cookie settings</button>
+          <Link to="/privacy" className="hover:text-primary transition-colors">{t({ en: 'Privacy Policy', fr: 'Politique de confidentialité' })}</Link>
+          <Link to="/terms" className="hover:text-primary transition-colors">{t({ en: 'Terms & Conditions', fr: 'Conditions générales' })}</Link>
+          <button onClick={openCookieSettings} className="hover:text-primary transition-colors">{t({ en: 'Cookie settings', fr: 'Paramètres des cookies' })}</button>
         </div>
-        <p className="font-body text-[11px] text-on-surface/30">© 2022 Vanguard Tech Ops. All rights reserved.</p>
+        <p className="font-body text-[11px] text-on-surface/30">© 2022 Vanguard Tech Ops. {t({ en: 'All rights reserved.', fr: 'Tous droits réservés.' })}</p>
       </div>
     </footer>
   );

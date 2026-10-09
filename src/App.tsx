@@ -15,10 +15,12 @@ import GraphicDesignPage from './pages/services/GraphicDesign';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import CookieBanner from './components/CookieBanner';
+import { LanguageProvider } from './i18n/LanguageContext';
 
 export default function App() {
   return (
     <HelmetProvider>
+      <LanguageProvider>
       <Router>
         <ScrollToTop />
         <div className="flex flex-col min-h-screen">
@@ -47,6 +49,7 @@ export default function App() {
         </div>
         <CookieBanner />
       </Router>
+      </LanguageProvider>
     </HelmetProvider>
   );
 }

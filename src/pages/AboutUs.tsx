@@ -4,6 +4,7 @@ import { Shield, Cpu, Zap, Code2, Palette, Database, Layers, Rocket } from 'luci
 import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 interface PanelProps {
   title: string;
@@ -46,11 +47,15 @@ const ArchitecturePanel = ({ title, focus, icon: Icon, services }: PanelProps) =
 );
 
 const AboutUs = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background text-on-surface py-0 md:py-32 px-6 md:px-8">
-      <SEO 
-        title="Technical Manifesto & Mission" 
-        description="Learn about our story, mission, and the architecture process behind our technical sovereignty. Transforming intricate technical challenges into streamlined, intuitive ecosystems."
+      <SEO
+        title={t({ en: "Technical Manifesto & Mission", fr: "Manifeste technique & mission" })}
+        description={t({
+          en: "Learn about our story, mission, and the architecture process behind our technical sovereignty. Transforming intricate technical challenges into streamlined, intuitive ecosystems.",
+          fr: "Découvrez notre histoire, notre mission et la méthode qui fonde notre souveraineté technique. Nous transformons des défis techniques complexes en écosystèmes simples et intuitifs."
+        })}
       />
       <div className="max-w-6xl mx-auto">
         <div className="relative mb-16 md:mb-32 py-16 md:py-24 px-6 md:px-16 overflow-hidden rounded-3xl border border-[#4DA6FF]/20 bg-surface/40 backdrop-blur-xl shadow-[0_0_50px_rgba(77,166,255,0.05)]">
@@ -75,7 +80,7 @@ const AboutUs = () => {
                 textShadow: "0 0 30px rgba(77,166,255,0.4), 0 0 10px rgba(255,255,255,0.2)"
               }}
             >
-              ABOUT US
+              {t({ en: 'ABOUT US', fr: 'À PROPOS' })}
             </motion.h1>
           </header>
 
@@ -86,9 +91,12 @@ const AboutUs = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
             >
-              <h2 className="font-headline text-xs md:text-2xl font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">OUR STORY</h2>
+              <h2 className="font-headline text-xs md:text-2xl font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">{t({ en: 'OUR STORY', fr: 'NOTRE HISTOIRE' })}</h2>
               <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
-                Founded on the principles of robust systems architecture and advanced cybersecurity, we understand that true luxury in the digital space means flawless performance and total control. We bridge the gap between complex engineering and elegant design, transforming intricate technical challenges into streamlined, intuitive ecosystems.
+                {t({
+                  en: 'Founded on the principles of robust systems architecture and advanced cybersecurity, we understand that true luxury in the digital space means flawless performance and total control. We bridge the gap between complex engineering and elegant design, transforming intricate technical challenges into streamlined, intuitive ecosystems.',
+                  fr: 'Fondés sur une architecture système robuste et une cybersécurité avancée, nous savons que le vrai luxe dans le numérique, c’est une performance irréprochable et une maîtrise totale. Nous faisons le lien entre ingénierie complexe et design élégant, en transformant des défis techniques complexes en écosystèmes simples et intuitifs.'
+                })}
               </p>
             </motion.div>
 
@@ -110,43 +118,46 @@ const AboutUs = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <h2 className="font-headline text-xs md:text-2xl font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">THE MISSION</h2>
+              <h2 className="font-headline text-xs md:text-2xl font-bold uppercase tracking-[0.2em] mb-4 md:mb-6 text-[#4DA6FF]">{t({ en: 'THE MISSION', fr: 'NOTRE MISSION' })}</h2>
               <p className="font-body text-sm md:text-xl font-light text-[#E0E0E0] leading-relaxed max-w-3xl mx-auto">
-                At Vanguard Tech Ops, we don't just build applications; we architect digital authority. We empower your business to scale, innovate, and lead through our core specializations.
+                {t({
+                  en: "At Vanguard Tech Ops, we don't just build applications; we architect digital authority. We empower your business to scale, innovate, and lead through our core specializations.",
+                  fr: 'Chez Vanguard Tech Ops, nous ne nous contentons pas de créer des applications : nous bâtissons votre autorité numérique. Grâce à nos domaines d’expertise, nous aidons votre entreprise à grandir, innover et prendre la tête.'
+                })}
               </p>
             </motion.div>
           </section>
         </div>
 
         <section className="py-12 md:py-20">
-          <h2 className="font-headline text-xl md:text-3xl font-bold uppercase tracking-widest mb-10 md:mb-16 text-primary text-center">The Architecture Process</h2>
+          <h2 className="font-headline text-xl md:text-3xl font-bold uppercase tracking-widest mb-10 md:mb-16 text-primary text-center">{t({ en: 'The Architecture Process', fr: 'Notre méthode' })}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ArchitecturePanel 
-              title="Architecture" 
-              focus="The Blueprint" 
+            <ArchitecturePanel
+              title="Architecture"
+              focus={t({ en: "The Blueprint", fr: "Le plan" })}
               icon={Database}
               services={[
-                { name: "Cloud & Virtualization", desc: "Designing the scalable server environment, virtual network topology, and security perimeters." },
-                { name: "Graphic & Web Design", desc: "Wireframing the user experience, designing the UI, and establishing visual brand guidelines." }
+                { name: t({ en: "Cloud & Virtualization", fr: "Cloud & Virtualisation" }), desc: t({ en: "Designing the scalable server environment, virtual network topology, and security perimeters.", fr: "Conception de l’environnement serveur évolutif, de la topologie réseau virtuelle et des périmètres de sécurité." }) },
+                { name: t({ en: "Graphic & Web Design", fr: "Design Graphique & Web" }), desc: t({ en: "Wireframing the user experience, designing the UI, and establishing visual brand guidelines.", fr: "Wireframes de l’expérience utilisateur, design de l’interface et définition de la charte graphique." }) }
               ]}
             />
-            <ArchitecturePanel 
-              title="Engineering" 
-              focus="The Build" 
+            <ArchitecturePanel
+              title={t({ en: "Engineering", fr: "Développement" })}
+              focus={t({ en: "The Build", fr: "La construction" })}
               icon={Code2}
               services={[
-                { name: "Precision Web & App Dev", desc: "Writing core application logic, front-end components, and backend APIs." },
-                { name: "AI & Automation", desc: "Developing intelligent bot flows, automating processes, and ML models." },
-                { name: "Shopify & WordPress", desc: "Customizing e-commerce architecture, headless storefronts, or integration channels." }
+                { name: t({ en: "Precision Web & App Dev", fr: "Développement Web & Apps" }), desc: t({ en: "Writing core application logic, front-end components, and backend APIs.", fr: "Développement de la logique applicative, des composants front-end et des API back-end." }) },
+                { name: t({ en: "AI & Automation", fr: "IA & Automatisation" }), desc: t({ en: "Developing intelligent bot flows, automating processes, and ML models.", fr: "Création de bots intelligents, automatisation des processus et modèles de machine learning." }) },
+                { name: "Shopify & WordPress", desc: t({ en: "Customizing e-commerce architecture, headless storefronts, or integration channels.", fr: "Personnalisation de l’architecture e-commerce, boutiques headless et canaux d’intégration." }) }
               ]}
             />
-            <ArchitecturePanel 
-              title="Deployment" 
-              focus="The Launch" 
+            <ArchitecturePanel
+              title={t({ en: "Deployment", fr: "Déploiement" })}
+              focus={t({ en: "The Launch", fr: "Le lancement" })}
               icon={Rocket}
               services={[
-                { name: "Cloud & Virtualization", desc: "Executing final production deployment and locking down endpoints." },
-                { name: "Finalization", desc: "Pushing web, app, and AI systems live with seamless automated workflows." }
+                { name: t({ en: "Cloud & Virtualization", fr: "Cloud & Virtualisation" }), desc: t({ en: "Executing final production deployment and locking down endpoints.", fr: "Mise en production finale et sécurisation des points d’accès." }) },
+                { name: t({ en: "Finalization", fr: "Finalisation" }), desc: t({ en: "Pushing web, app, and AI systems live with seamless automated workflows.", fr: "Mise en ligne des sites, applications et systèmes IA avec des workflows automatisés." }) }
               ]}
             />
           </div>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Move } from 'lucide-react';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 const InteractionIndicator = () => {
+  const { t } = useLanguage();
   const [hasInteracted, setHasInteracted] = useState(false);
 
   return (
@@ -31,7 +33,7 @@ const InteractionIndicator = () => {
               <Move className="w-5 h-5 text-primary" />
             </motion.div>
             <span className="font-headline text-[10px] uppercase tracking-[0.3em] text-primary/60 font-bold bg-background/40 px-3 py-1 rounded-full backdrop-blur-md border border-white/5 shadow-xl">
-              Interact to Explore
+              {t({ en: 'Interact to Explore', fr: 'Interagissez pour explorer' })}
             </span>
           </div>
         </motion.div>

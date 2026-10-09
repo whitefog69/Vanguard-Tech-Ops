@@ -9,6 +9,7 @@ import SEO from '../../components/SEO';
 import InteractionIndicator from '../../components/InteractionIndicator';
 import CanvasErrorBoundary from '../../components/CanvasErrorBoundary';
 import CTASection from '../../components/CTASection';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 class EnvironmentBoundary extends React.Component<{children: React.ReactNode}, {hasError: boolean}> {
   constructor(props: {children: React.ReactNode}) {
@@ -124,11 +125,15 @@ const CreativeBlueprint = () => {
 };
 
 const GraphicDesignPage = () => {
+  const { t } = useLanguage();
   return (
     <div className="min-h-screen bg-background text-on-surface">
-      <SEO 
-        title="Graphic & Web Design Studio" 
-        description="Crafting cohesive visual identities and visually striking website layouts. High-end UI/UX prototyping, brand identity, and responsive visual design for elite brands."
+      <SEO
+        title={t({ en: "Graphic & Web Design Studio", fr: "Studio de design graphique & web" })}
+        description={t({
+          en: "Crafting cohesive visual identities and visually striking website layouts. High-end UI/UX prototyping, brand identity, and responsive visual design for elite brands.",
+          fr: "Création d’identités visuelles cohérentes et de maquettes web marquantes. Prototypage UI/UX haut de gamme, identité de marque et design responsive pour des marques exigeantes."
+        })}
       />
       {/* Hero Section */}
       <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
@@ -158,10 +163,13 @@ const GraphicDesignPage = () => {
               <Palette className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
             <h1 className="font-headline text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-6 uppercase">
-              Graphic & <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">Web Design</span>
+              {t({ en: 'Graphic &', fr: 'Design Graphique &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container neon-glow-violet">{t({ en: 'Web Design', fr: 'Web' })}</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
-              Crafting cohesive visual identities and visually striking, user-centric website layouts that align with modern aesthetics.
+              {t({
+                en: 'Crafting cohesive visual identities and visually striking, user-centric website layouts that align with modern aesthetics.',
+                fr: 'Création d’identités visuelles cohérentes et de maquettes web marquantes, centrées sur l’utilisateur et dans l’air du temps.'
+              })}
             </p>
           </motion.div>
         </div>
@@ -171,11 +179,11 @@ const GraphicDesignPage = () => {
       <section className="relative py-16 md:py-24 px-6 md:px-8 z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {[
-            { icon: PenTool, title: "Brand Identity & Logo Creation", desc: "Crafting cohesive visual identities that establish a strong, premium market presence." },
-            { icon: Layout, title: "Custom Web Interface Design", desc: "Designing visually striking, user-centric website layouts that align with modern aesthetics." },
-            { icon: Image, title: "Digital Asset & Marketing Graphics", desc: "Producing high-quality visual content tailored for digital campaigns and brand storytelling." },
-            { icon: Figma, title: "UI/UX Prototyping & Wireframing", desc: "Architecting intuitive user journeys through detailed interactive prototypes." },
-            { icon: MonitorSmartphone, title: "Responsive Visual Design", desc: "Ensuring pixel-perfect graphic fidelity and fluid layouts across all device platforms." }
+            { icon: PenTool, title: t({ en: "Brand Identity & Logo Creation", fr: "Identité de marque & création de logo" }), desc: t({ en: "Crafting cohesive visual identities that establish a strong, premium market presence.", fr: "Des identités visuelles cohérentes qui donnent à votre marque une présence forte et haut de gamme." }) },
+            { icon: Layout, title: t({ en: "Custom Web Interface Design", fr: "Design d’interfaces web sur mesure" }), desc: t({ en: "Designing visually striking, user-centric website layouts that align with modern aesthetics.", fr: "Des maquettes web marquantes, centrées sur l’utilisateur et dans l’air du temps." }) },
+            { icon: Image, title: t({ en: "Digital Asset & Marketing Graphics", fr: "Visuels digitaux & supports marketing" }), desc: t({ en: "Producing high-quality visual content tailored for digital campaigns and brand storytelling.", fr: "Des contenus visuels de qualité pour vos campagnes digitales et le storytelling de votre marque." }) },
+            { icon: Figma, title: t({ en: "UI/UX Prototyping & Wireframing", fr: "Prototypage UI/UX & wireframes" }), desc: t({ en: "Architecting intuitive user journeys through detailed interactive prototypes.", fr: "Des parcours utilisateurs intuitifs, conçus à l’aide de prototypes interactifs détaillés." }) },
+            { icon: MonitorSmartphone, title: t({ en: "Responsive Visual Design", fr: "Design responsive" }), desc: t({ en: "Ensuring pixel-perfect graphic fidelity and fluid layouts across all device platforms.", fr: "Un rendu graphique impeccable et des mises en page fluides sur tous les appareils." }) }
           ].map((item, i) => (
             <motion.div
               key={i}
@@ -240,13 +248,13 @@ const GraphicDesignPage = () => {
             className="space-y-6 md:space-y-8"
           >
             <h2 className="font-headline text-3xl md:text-4xl font-black tracking-tighter text-on-surface uppercase">
-              AESTHETIC <span className="text-secondary italic">AUTHORITY</span>
+              {t({ en: 'AESTHETIC', fr: 'AUTORITÉ' })} <span className="text-secondary italic pr-[0.15em]">{t({ en: 'AUTHORITY', fr: 'ESTHÉTIQUE' })}</span>
             </h2>
             <div className="space-y-4 md:space-y-6">
               {[
-                { label: "Quiet Luxury Visuals", desc: "High-end minimalist design focused on technical authority and premium user trust." },
-                { label: "WCAG AAA Accessibility", desc: "Pixel-perfect fidelity that meets the highest international standards for inclusive design." },
-                { label: "Cohesive Brand Systems", desc: "Comprehensive digital style guides ensuring total visual sovereignty across all platforms." }
+                { label: t({ en: "Quiet Luxury Visuals", fr: "Un luxe discret" }), desc: t({ en: "High-end minimalist design focused on technical authority and premium user trust.", fr: "Un design minimaliste haut de gamme qui inspire expertise et confiance." }) },
+                { label: t({ en: "WCAG AAA Accessibility", fr: "Accessibilité WCAG AAA" }), desc: t({ en: "Pixel-perfect fidelity that meets the highest international standards for inclusive design.", fr: "Un rendu au pixel près, conforme aux normes internationales les plus exigeantes en matière d’accessibilité." }) },
+                { label: t({ en: "Cohesive Brand Systems", fr: "Des chartes de marque cohérentes" }), desc: t({ en: "Comprehensive digital style guides ensuring total visual sovereignty across all platforms.", fr: "Des guides de style complets pour une identité visuelle maîtrisée sur toutes les plateformes." }) }
               ].map((point, i) => (
                 <div key={i} className="flex gap-4 md:gap-6 group">
                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-secondary group-hover:scale-150 transition-transform duration-300 shadow-[0_0_10px_rgba(119,1,208,0.8)]" />
@@ -272,17 +280,28 @@ const GraphicDesignPage = () => {
             viewport={{ once: true }}
             className="flex-1 w-full"
           >
-            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">Design Philosophy</h2>
+            <h2 className="font-headline text-3xl md:text-4xl font-bold mb-6 md:mb-8 uppercase tracking-widest text-on-surface text-center lg:text-left">{t({ en: 'Design Philosophy', fr: 'Notre philosophie du design' })}</h2>
             <p className="font-body text-on-surface-variant leading-relaxed mb-8 text-sm md:text-base text-center lg:text-left">
-              Our design ethos is rooted in "Quiet Luxury"—a minimalist yet high-impact approach that prioritizes negative space, premium typography, and seamless interaction.
+              {t({
+                en: 'Our design ethos is rooted in "Quiet Luxury"—a minimalist yet high-impact approach that prioritizes negative space, premium typography, and seamless interaction.',
+                fr: 'Notre approche repose sur le « luxe discret » : un design minimaliste mais percutant, qui privilégie l’espace, une typographie soignée et des interactions fluides.'
+              })}
             </p>
             <ul className="space-y-4">
-              {[
-                "Pixel-Perfect Graphic Fidelity",
-                "Modern Glassmorphism Effects",
-                "Micro-Interaction Design",
-                "Cross-Platform Visual Consistency"
-              ].map((text, i) => (
+              {t({
+                en: [
+                  "Pixel-Perfect Graphic Fidelity",
+                  "Modern Glassmorphism Effects",
+                  "Micro-Interaction Design",
+                  "Cross-Platform Visual Consistency"
+                ],
+                fr: [
+                  "Rendu graphique au pixel près",
+                  "Effets glassmorphism modernes",
+                  "Design de micro-interactions",
+                  "Cohérence visuelle multiplateforme"
+                ]
+              }).map((text, i) => (
                 <li key={i} className="flex items-center gap-4 text-on-surface justify-center lg:justify-start">
                   <div className="w-1.5 h-1.5 rounded-full bg-secondary neon-glow-violet"></div>
                   <span className="font-headline uppercase tracking-[0.1em] text-xs md:text-sm font-bold">{text}</span>

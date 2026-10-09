@@ -1,5 +1,6 @@
 import React from 'react';
 import SEO from './SEO';
+import { useLanguage } from '@/src/i18n/LanguageContext';
 
 export interface LegalSection {
   title: string;
@@ -14,12 +15,14 @@ interface LegalPageProps {
   sections: LegalSection[];
 }
 
-const LegalPage = ({ title, description, lastUpdated, intro, sections }: LegalPageProps) => (
+const LegalPage = ({ title, description, lastUpdated, intro, sections }: LegalPageProps) => {
+  const { t } = useLanguage();
+  return (
   <div className="min-h-screen bg-background text-on-surface pt-8 md:pt-16 pb-20 md:pb-32 px-6 md:px-8">
     <SEO title={title} description={description} />
     <div className="max-w-3xl mx-auto">
       <h1 className="font-headline text-3xl sm:text-5xl font-bold tracking-tight text-on-surface mb-3">{title}</h1>
-      <p className="font-body text-xs text-on-surface-variant/60 mb-10">Last updated: {lastUpdated}</p>
+      <p className="font-body text-xs text-on-surface-variant/60 mb-10">{t({ en: 'Last updated:', fr: 'Dernière mise à jour :' })} {lastUpdated}</p>
 
       {intro && <div className="font-body text-sm sm:text-base text-on-surface-variant/80 leading-relaxed mb-10 space-y-4">{intro}</div>}
 
@@ -37,6 +40,7 @@ const LegalPage = ({ title, description, lastUpdated, intro, sections }: LegalPa
       </div>
     </div>
   </div>
-);
+  );
+};
 
 export default LegalPage;
