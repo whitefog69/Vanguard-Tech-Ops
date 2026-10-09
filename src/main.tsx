@@ -14,6 +14,11 @@ import '@fontsource/space-grotesk/600.css';
 import '@fontsource/space-grotesk/700.css';
 import './index.css';
 
+// Old links used hash routing (/#/contact); send them to the clean URL.
+if (window.location.hash.startsWith('#/')) {
+  window.history.replaceState(null, '', window.location.hash.slice(1));
+}
+
 console.log("Initializing App...");
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
