@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const Contact = () => {
@@ -215,7 +216,12 @@ const Contact = () => {
                   <>Transmit Request <Send className="w-4 h-4" /></>
                 )}
               </button>
-              
+
+              <p className="font-body text-[11px] text-on-surface-variant/50 text-center leading-relaxed">
+                Your details are only used to reply to your request and are kept for 1 year.
+                See our <Link to="/privacy" className="text-primary/80 underline underline-offset-2 hover:text-white">Privacy Policy</Link>.
+              </p>
+
               <div className="flex items-center justify-center gap-2 pt-2 md:pt-4">
                 <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
                 <span className="font-mono text-[9px] md:text-[10px] text-on-surface-variant/40 uppercase tracking-widest">Secure TLS 1.3 Transmission Active</span>

@@ -4,6 +4,7 @@ import { Terminal, Search, ChevronDown, Globe, ShoppingBag, Server, Cloud, Spark
 import { cn } from '@/src/lib/utils';
 import { motion, AnimatePresence } from 'motion/react';
 import { siteData, PageData } from '@/src/lib/services-data';
+import { openCookieSettings } from '@/src/lib/consent';
 
 const iconMap = {
   Server,
@@ -354,6 +355,12 @@ export const Footer = () => {
           />
           <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">Vanguard Tech Ops. Technical Authority Secured.</p>
         </div>
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-body text-xs text-on-surface/50">
+          <Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+          <Link to="/terms" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link>
+          <button onClick={openCookieSettings} className="hover:text-primary transition-colors">Cookie settings</button>
+        </div>
+        <p className="font-body text-[11px] text-on-surface/30">© {new Date().getFullYear()} Vanguard Tech Ops. All rights reserved.</p>
       </div>
     </footer>
   );

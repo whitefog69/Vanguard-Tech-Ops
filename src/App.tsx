@@ -12,6 +12,9 @@ import WebDevPage from './pages/services/WebDev';
 import AISystemsPage from './pages/services/AISystems';
 import ShopifyPage from './pages/services/Shopify';
 import GraphicDesignPage from './pages/services/GraphicDesign';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import CookieBanner from './components/CookieBanner';
 
 export default function App() {
   return (
@@ -31,7 +34,9 @@ export default function App() {
               <Route path="/services/shopify" element={<ShopifyPage />} />
               <Route path="/services/design" element={<GraphicDesignPage />} />
               <Route path="/contact" element={<Contact />} />
-              
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+
               {/* Fallback routes for navigation items */}
               <Route path="/infrastructure" element={<CloudPage />} />
               <Route path="/engineering" element={<WebDevPage />} />
@@ -40,6 +45,7 @@ export default function App() {
           </main>
           <Footer />
         </div>
+        <CookieBanner />
       </Router>
     </HelmetProvider>
   );

@@ -1,0 +1,124 @@
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
+import { Cookie } from 'lucide-react';
+import { cn } from '@/src/lib/utils';
+import { getConsent, saveConsent, OPEN_SETTINGS_EVENT } from '@/src/lib/consent';
+
+// Accept and Refuse share one style: CNIL requires refusing to be as easy as accepting.
+const choiceButton = "flex-1 px-5 py-3 font-headline font-bold uppercase tracking-[0.15em] text-[10px] sm:text-xs border border-primary/40 text-on-surface hover:bg-primary/10 hover:border-primary transition-all";
+
+const Toggle = ({ checked, disabled, onChange, label }: { checked: boolean; disabled?: boolean; onChange?: (v: boolean) => void; label: string }) => (
+  <button
+    type="button"
+    role="switch"
+    aria-checked={checked}
+    aria-label={label}
+    disabled={disabled}
+    onClick={() => onChange?.(!checked)}
+    className={cn(
+      "relative w-11 h-6 flex-shrink-0 rounded-full border transition-colors",
+      checked ? "bg-primary-container border-primary/60" : "bg-surface-container-high border-outline-variant",
+      disabled && "opacity-60 cursor-not-allowed"
+    )}
+  >
+    <span className={cn("absolute top-0.5 left-0.5 w-4.5 h-4.5 rounded-full bg-white transition-transform", checked && "translate-x-5")} />
+  </button>
+);
+
+const CookieBanner = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [analytics, setAnalytics] = useState(false);
+
+  useEffect(() => {
+    if (!getConsent()) setIsOpen(true);
+
+    const openSettings = () => {
+      setAnalytics(getConsent()?.analytics ?? false);
+      setShowDetails(true);
+      setIsOpen(true);
+    };
+    window.addEventListener(OPEN_SETTINGS_EVENT, openSettings);
+    return () => window.removeEventListener(OPEN_SETTINGS_EVENT, openSettings);
+  }, []);
+
+  const decide = (allowAnalytics: boolean) => {
+    saveConsent(allowAnalytics);
+    setIsOpen(false);
+    setShowDetails(false);
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 40 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          role="dialog"
+          aria-modal="false"
+          aria-labelledby="cookie-banner-title"
+          className="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:bottom-6 sm:max-w-md z-[60] bg-surface-container-lowest/95 backdrop-blur-xl border border-primary/20 shadow-[0_0_40px_rgba(0,71,171,0.2)] rounded-xl p-6 max-h-[85vh] overflow-y-auto"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <Cookie className="w-5 h-5 text-primary" />
+            <h2 id="cookie-banner-title" className="font-headline font-bold text-on-surface text-base">
+              {showDetails ? 'Cookie settings' : 'Your privacy'}
+            </h2>
+          </div>
+
+          {!showDetails ? (
+            <p className="font-body text-sm text-on-surface-variant/80 leading-relaxed mb-5">
+              We use what's strictly needed to run this site. With your permission, we'd also like to use analytics
+              cookies to understand how visitors use it. You can change your choice at any time from
+              "Cookie settings" in the footer. <Link to="/privacy" className="text-primary underline underline-offset-2 hover:text-white">Privacy Policy</Link>
+            </p>
+          ) : (
+            <div className="space-y-4 mb-5">
+              <div className="flex items-start justify-between gap-4 p-4 rounded-lg bg-surface-container-low/60 border border-outline-variant/20">
+                <div>
+                  <p className="font-body font-semibold text-sm text-on-surface mb-1">Strictly necessary</p>
+                  <p className="font-body text-xs text-on-surface-variant/70 leading-relaxed">
+                    Needed for the site to work, such as remembering your cookie choice. Always on.
+                  </p>
+                </div>
+                <Toggle checked disabled label="Strictly necessary (always on)" />
+              </div>
+              <div className="flex items-start justify-between gap-4 p-4 rounded-lg bg-surface-container-low/60 border border-outline-variant/20">
+                <div>
+                  <p className="font-body font-semibold text-sm text-on-surface mb-1">Analytics</p>
+                  <p className="font-body text-xs text-on-surface-variant/70 leading-relaxed">
+                    Help us understand which pages are visited and how the site is used, so we can improve it. Only used if you allow it.
+                  </p>
+                </div>
+                <Toggle checked={analytics} onChange={setAnalytics} label="Analytics cookies" />
+              </div>
+              <p className="font-body text-xs text-on-surface-variant/60">
+                More details in our <Link to="/privacy" className="text-primary underline underline-offset-2 hover:text-white">Privacy Policy</Link>.
+              </p>
+            </div>
+          )}
+
+          <div className="flex flex-col sm:flex-row gap-2">
+            {!showDetails ? (
+              <>
+                <button onClick={() => decide(false)} className={choiceButton}>Refuse all</button>
+                <button onClick={() => setShowDetails(true)} className={cn(choiceButton, "border-outline-variant/40")}>Customize</button>
+                <button onClick={() => decide(true)} className={choiceButton}>Accept all</button>
+              </>
+            ) : (
+              <>
+                <button onClick={() => decide(false)} className={choiceButton}>Refuse all</button>
+                <button onClick={() => decide(analytics)} className={choiceButton}>Save choices</button>
+              </>
+            )}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
+
+export default CookieBanner;
