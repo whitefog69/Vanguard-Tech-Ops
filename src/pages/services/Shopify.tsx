@@ -115,7 +115,7 @@ const ShopifyPage = () => {
         })}
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden lg:py-0">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-16">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img 

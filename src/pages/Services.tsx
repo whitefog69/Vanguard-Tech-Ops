@@ -17,7 +17,7 @@ const Services = () => {
         })}
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen lg:h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-0">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-16">
         {/* Background Video */}
         <video 
           autoPlay 

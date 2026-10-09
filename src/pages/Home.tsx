@@ -17,7 +17,7 @@ const Home = () => {
         })}
       />
       {/* Unified Hero & CTA Section */}
-      <section className="relative min-h-screen lg:h-screen flex flex-col items-center justify-center lg:py-0 px-6 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col items-center justify-center py-16 px-6 overflow-hidden">
         {/* Background Video */}
         <video 
           loop 
@@ -112,7 +112,7 @@ const Home = () => {
             <h2 className="font-headline text-xl sm:text-2xl md:text-3xl font-bold text-on-surface mb-6 tracking-tighter uppercase">
                 {t({ en: 'Ready to Architect Your', fr: 'Prêt à bâtir votre' })} <span className="italic font-light text-primary">{t({ en: 'Sovereignty', fr: 'souveraineté' })}</span>{t({ en: '?', fr: ' ?' })}
             </h2>
-            <Link to="/about" className="px-8 sm:px-12 py-4 sm:py-5 border border-outline-variant/60 text-on-surface font-headline font-bold tracking-widest uppercase hover:bg-surface-container-highest/20 transition-all text-[10px] sm:text-xs md:text-sm">
+            <Link to="/about" className="inline-block px-8 sm:px-12 py-4 sm:py-5 border border-outline-variant/60 text-on-surface font-headline font-bold tracking-widest uppercase hover:bg-surface-container-highest/20 transition-all text-[10px] sm:text-xs md:text-sm">
                 {t({ en: 'View Technical Manifesto', fr: 'Voir notre manifeste technique' })}
             </Link>
         </motion.div>
