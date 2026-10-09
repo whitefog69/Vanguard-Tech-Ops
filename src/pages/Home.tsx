@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart, Star } from 'lucide-react';
+import { ArrowRight, Shield, Brain, Terminal, ShoppingBag, CheckCircle, Settings2, Code2, Activity, Headset, Bolt, Globe, Palette, Server, Key, Workflow, RefreshCw, BarChart, MessageSquare, FileText } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useLanguage } from '@/src/i18n/LanguageContext';
 
@@ -118,94 +118,79 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* How We Work Section */}
       <section className="py-16 md:py-32 px-6 max-w-7xl mx-auto relative overflow-hidden">
         <div className="text-center mb-12 md:mb-24">
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="font-body text-primary tracking-[0.4em] uppercase text-[10px] sm:text-xs mb-4 block font-bold"
           >
-            {t({ en: 'Verified Performance', fr: 'Performance vérifiée' })}
+            {t({ en: 'Simple & Transparent', fr: 'Simple & transparent' })}
           </motion.span>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="font-headline text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-on-surface uppercase"
             >
-            {t({ en: 'CLIENT', fr: 'AVIS' })} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic pr-[0.15em]">{t({ en: 'REVIEWS', fr: 'CLIENTS' })}</span>
+            {t({ en: 'HOW WE', fr: 'NOTRE FAÇON DE' })} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic pr-[0.15em]">{t({ en: 'WORK', fr: 'TRAVAILLER' })}</span>
           </motion.h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
-          {/* Real client feedback only: name, role, service and their words (with their permission). */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
           {[
             {
-              name: "Marcus Thorne",
-              role: t({ en: "Tech Manager, SaaS Solutions", fr: "Responsable technique, SaaS Solutions" }),
-              service: t({ en: "AI & Automation", fr: "IA & Automatisation" }),
-              content: t({
-                en: "Implementing their AI & Automation suite revolutionized our internal workflows. As a tech manager, I value stability and efficiency; their autonomous agents delivered both, drastically reducing our operational overhead.",
-                fr: "La mise en place de leur suite IA & Automatisation a transformé nos processus internes. En tant que responsable technique, je tiens à la stabilité et à l’efficacité ; leurs agents autonomes ont apporté les deux et considérablement réduit nos coûts opérationnels."
-              }),
-              stars: 5
+              icon: MessageSquare,
+              title: t({ en: 'A free first conversation', fr: 'Un premier échange gratuit' }),
+              desc: t({
+                en: 'Tell us about your project and goals. We listen, ask the right questions and tell you honestly what we can do. No commitment.',
+                fr: 'Parlez-nous de votre projet et de vos objectifs. Nous écoutons, posons les bonnes questions et vous disons honnêtement ce que nous pouvons faire. Sans engagement.'
+              })
             },
             {
-              name: "Maya Patel",
-              role: t({ en: "Entrepreneur, Online Seller", fr: "Entrepreneur, vente en ligne" }),
-              service: t({ en: "Web & E-commerce", fr: "Web & E-commerce" }),
-              content: t({
-                en: "The web and E-commerce development they provided completely transformed my storefront. My site is now faster, more secure, and perfectly tailored for high-volume sales. My conversion rates have never looked better.",
-                fr: "Leur travail de développement web et e-commerce a complètement transformé ma boutique. Mon site est désormais plus rapide, plus sûr et parfaitement adapté à un volume de ventes élevé. Mes taux de conversion n’ont jamais été aussi bons."
-              }),
-              stars: 5
+              icon: FileText,
+              title: t({ en: 'A clear quote', fr: 'Un devis clair' }),
+              desc: t({
+                en: 'Before any work starts, you get a written quote with the scope, the price and the timeline. No surprises.',
+                fr: 'Avant tout démarrage, vous recevez un devis écrit avec le périmètre, le prix et les délais. Pas de mauvaise surprise.'
+              })
             },
             {
-              name: "Alex Rivera",
-              role: t({ en: "Cybersecurity Student", fr: "Étudiant en cybersécurité" }),
-              service: t({ en: "Security & Cloud", fr: "Sécurité & Cloud" }),
-              content: t({
-                en: "For my research, I analyzed their virtualization protocols and found their implementation of digital sovereignty and hardened environments to be genuinely impressive. The best-practice architecture they use is a gold standard.",
-                fr: "Dans le cadre de mes recherches, j’ai analysé leurs protocoles de virtualisation et leur mise en œuvre de la souveraineté numérique et des environnements renforcés est vraiment impressionnante. Leur architecture fondée sur les bonnes pratiques est une référence."
-              }),
-              stars: 5
+              icon: Activity,
+              title: t({ en: 'Regular updates', fr: 'Un suivi régulier' }),
+              desc: t({
+                en: 'You follow progress as it happens and talk directly to the person building your project.',
+                fr: 'Vous suivez l’avancement au fil du projet et échangez directement avec la personne qui le réalise.'
+              })
+            },
+            {
+              icon: Headset,
+              title: t({ en: 'Launch & support', fr: 'Mise en ligne & accompagnement' }),
+              desc: t({
+                en: 'We launch together, show you how everything works, and stay available for your questions afterwards.',
+                fr: 'Nous lançons ensemble, nous vous montrons comment tout fonctionne et restons disponibles pour vos questions ensuite.'
+              })
             }
-          ].map((t, i) => (
+          ].map((step, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.8, ease: "easeOut" }}
-              className="glass-card p-8 md:p-10 flex flex-col justify-between gap-8 hover:border-primary/20 transition-colors duration-500"
+              transition={{ delay: i * 0.12, duration: 0.8, ease: "easeOut" }}
+              className="glass-card p-8 flex flex-col gap-5 hover:border-primary/20 transition-colors duration-500"
             >
-              <div className="space-y-5">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex gap-1">
-                    {[...Array(t.stars)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-primary text-primary opacity-80" />
-                    ))}
-                  </div>
-                  <span className="font-body text-xs text-on-surface-variant opacity-60 whitespace-nowrap">{t.service}</span>
+              <div className="flex items-center justify-between">
+                <div className="w-11 h-11 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <step.icon className="w-5 h-5 text-primary" />
                 </div>
-
-                <p className="font-body text-on-surface-variant text-sm sm:text-base leading-relaxed">
-                  {t.content}
-                </p>
+                <span className="font-mono text-xs text-on-surface-variant/40">0{i + 1}</span>
               </div>
-
-              <div className="pt-6 border-t border-outline-variant/10 flex items-center gap-4">
-                <div className="w-11 h-11 flex-shrink-0 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center font-headline font-bold text-primary text-sm">
-                  {t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                </div>
-                <div>
-                  <h4 className="font-body font-semibold text-on-surface text-base">{t.name}</h4>
-                  <p className="font-body text-xs text-on-surface-variant opacity-70">{t.role}</p>
-                </div>
-              </div>
+              <h3 className="font-body font-semibold text-on-surface text-lg">{step.title}</h3>
+              <p className="font-body text-on-surface-variant/80 text-sm leading-relaxed">{step.desc}</p>
             </motion.div>
           ))}
         </div>
