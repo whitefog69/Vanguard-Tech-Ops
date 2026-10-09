@@ -240,7 +240,7 @@ const Home = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16 text-center">
           {[
             { value: "99.9%", label: "SUCCESS RATE" },
-            { value: "500+", label: "PROJECTS COMPLETED" },
+            { value: "80+", label: "PROJECTS COMPLETED" },
             { value: "4+", label: "YEARS OF EXCELLENCE" }
           ].map((m, i) => (
             <motion.div 
