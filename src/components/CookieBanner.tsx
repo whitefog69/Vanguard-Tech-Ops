@@ -79,7 +79,7 @@ const CookieBanner = () => {
                 en: 'We use what\'s strictly needed to run this site. With your permission, we\'d also like to use analytics cookies to understand how visitors use it. You can change your choice at any time from "Cookie settings" in the footer.',
                 fr: 'Nous utilisons uniquement ce qui est nécessaire au fonctionnement du site. Avec votre accord, nous aimerions aussi utiliser des cookies de mesure d’audience pour comprendre comment le site est utilisé. Vous pouvez modifier votre choix à tout moment via « Paramètres des cookies » en bas de page.'
               })}{' '}
-              <Link to="/privacy" className="text-primary underline underline-offset-2 hover:text-white">{t({ en: 'Privacy Policy', fr: 'Politique de confidentialité' })}</Link>
+              <Link to="/privacy" className="text-primary underline underline-offset-2 hover:text-on-surface">{t({ en: 'Privacy Policy', fr: 'Politique de confidentialité' })}</Link>
             </p>
           ) : (
             <div className="space-y-4 mb-5">
@@ -109,7 +109,7 @@ const CookieBanner = () => {
               </div>
               <p className="font-body text-xs text-on-surface-variant/60">
                 {t({ en: 'More details in our', fr: 'Plus de détails dans notre' })}{' '}
-                <Link to="/privacy" className="text-primary underline underline-offset-2 hover:text-white">{t({ en: 'Privacy Policy', fr: 'politique de confidentialité' })}</Link>.
+                <Link to="/privacy" className="text-primary underline underline-offset-2 hover:text-on-surface">{t({ en: 'Privacy Policy', fr: 'politique de confidentialité' })}</Link>.
               </p>
             </div>
           )}

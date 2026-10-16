@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Dark is the default theme. `light:` styles apply once <html data-theme="light"> is set
+   (by the header toggle, or by public/theme-init.js before the first paint). */
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
 @theme {
   --font-headline: "Space Grotesk", sans-serif;
   --font-body: "Inter", sans-serif;
@@ -44,11 +48,54 @@
   --radius-full: 9999px;
 }
 
+:root {
+  color-scheme: dark;
+}
+
+/* Light theme: the same token names, so every color utility follows the toggle. */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-background: #f5f6fa;
+  --color-on-background: #0f1117;
+
+  --color-primary: #1a5fd6;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #0047ab;
+  --color-on-primary-container: #ffffff;
+  --color-primary-fixed-dim: #1a5fd6;
+
+  --color-secondary: #7c2fe0;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #5b03a8;
+  --color-on-secondary-container: #ffffff;
+  --color-secondary-fixed-dim: #7c2fe0;
+
+  --color-tertiary: #5f5e5e;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #e5e2e1;
+  --color-on-tertiary-container: #1c1b1b;
+
+  --color-surface: #f5f6fa;
+  --color-on-surface: #0f1117;
+  --color-surface-variant: #e1e3ec;
+  --color-on-surface-variant: #1b1d26;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #eef0f5;
+  --color-surface-container: #e8eaf0;
+  --color-surface-container-high: #e2e4eb;
+  --color-surface-container-highest: #dbdee6;
+
+  --color-outline: #5f6372;
+  --color-outline-variant: #a9adbc;
+}
+
 @layer utilities {
   .glass-card {
-    background: rgba(53, 53, 52, 0.2);
+    background: color-mix(in srgb, var(--color-surface-variant) 20%, transparent);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(67, 70, 83, 0.15);
+    border: 1px solid color-mix(in srgb, var(--color-outline-variant) 15%, transparent);
   }
   
   .neon-glow-cobalt {
@@ -60,7 +107,7 @@
   }
 
   .hero-gradient {
-    background: radial-gradient(circle at 50% 50%, rgba(0, 71, 171, 0.15) 0%, rgba(19, 19, 19, 0) 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(0, 71, 171, 0.15) 0%, transparent 70%);
   }
 }
 

@@ -31,7 +31,7 @@ const Services = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
@@ -99,7 +99,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 light:opacity-20 light:group-hover:opacity-35 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
               </div>
@@ -159,7 +159,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/web/web-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 light:opacity-20 light:group-hover:opacity-35 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
               </div>
@@ -207,7 +207,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/ai/ai-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 light:opacity-20 light:group-hover:opacity-35 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
               </div>
@@ -250,7 +250,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 light:opacity-15 light:group-hover:opacity-30 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-surface-container-low/90 via-surface-container-low/40 to-transparent"></div>
               </div>
@@ -293,7 +293,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/design/design-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 light:opacity-15 light:group-hover:opacity-30 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
               </div>

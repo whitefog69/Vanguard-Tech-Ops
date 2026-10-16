@@ -8,7 +8,7 @@ const CONTACT_EMAIL = 'contact@vanguardtechops.com';
 const mail = <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>;
 const cnil = <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>;
 const settingsButton = (label: string) => (
-  <button onClick={openCookieSettings} className="text-primary underline underline-offset-2 hover:text-white">{label}</button>
+  <button onClick={openCookieSettings} className="text-primary underline underline-offset-2 hover:text-on-surface">{label}</button>
 );
 
 const en: { intro: React.ReactNode; sections: LegalSection[] } = {
@@ -39,7 +39,7 @@ const en: { intro: React.ReactNode; sections: LegalSection[] } = {
             such as your IP address, browser type and the pages requested. This is used to deliver the site and keep it secure.
           </p>
           <p>
-            <strong>Your preferences:</strong> we store your cookie choice and your language in your browser so we don't ask you again on every visit.
+            <strong>Your preferences:</strong> we store your cookie choice, your language and your light/dark display choice in your browser so we don't ask you again on every visit.
           </p>
           <p>
             <strong>Analytics (only with your consent):</strong> if you accept analytics cookies, information about how you use the
@@ -130,8 +130,9 @@ const en: { intro: React.ReactNode; sections: LegalSection[] } = {
       body: (
         <>
           <p>
-            <strong>Strictly necessary:</strong> we store your cookie choice (<code>vto-consent</code>, kept for 6 months) and
-            your language (<code>vto-lang</code>) in your browser's local storage. These do not require consent.
+            <strong>Strictly necessary:</strong> we store your cookie choice (<code>vto-consent</code>, kept for 6 months),
+            your language (<code>vto-lang</code>) and your light/dark display choice (<code>vto-theme</code>) in your
+            browser's local storage. These do not require consent.
           </p>
           <p>
             <strong>Analytics:</strong> no analytics tool is active at the moment. If we add one, it will only run if you
@@ -190,8 +191,8 @@ const fr: { intro: React.ReactNode; sections: LegalSection[] } = {
             afficher le site et à le sécuriser.
           </p>
           <p>
-            <strong>Vos préférences :</strong> nous enregistrons votre choix concernant les cookies et votre langue dans votre
-            navigateur, pour ne pas vous les redemander à chaque visite.
+            <strong>Vos préférences :</strong> nous enregistrons votre choix concernant les cookies, votre langue et votre choix
+            d’affichage clair/sombre dans votre navigateur, pour ne pas vous les redemander à chaque visite.
           </p>
           <p>
             <strong>Mesure d’audience (uniquement avec votre accord) :</strong> si vous acceptez les cookies de mesure
@@ -284,8 +285,8 @@ const fr: { intro: React.ReactNode; sections: LegalSection[] } = {
         <>
           <p>
             <strong>Strictement nécessaires :</strong> nous enregistrons votre choix concernant les cookies
-            (<code>vto-consent</code>, conservé 6 mois) et votre langue (<code>vto-lang</code>) dans le stockage local de votre
-            navigateur. Ils ne nécessitent pas de consentement.
+            (<code>vto-consent</code>, conservé 6 mois), votre langue (<code>vto-lang</code>) et votre choix d’affichage
+            clair/sombre (<code>vto-theme</code>) dans le stockage local de votre navigateur. Ils ne nécessitent pas de consentement.
           </p>
           <p>
             <strong>Mesure d’audience :</strong> aucun outil de mesure d’audience n’est actif pour le moment. Si nous en
@@ -325,7 +326,7 @@ const Privacy = () => {
       description={lang === 'fr'
         ? 'Comment Vanguard Tech Ops collecte, utilise et protège vos données personnelles, et quels sont vos droits.'
         : 'How Vanguard Tech Ops collects, uses and protects your personal data, and the rights you have over it.'}
-      lastUpdated={lang === 'fr' ? '9 octobre 2026' : '9 October 2026'}
+      lastUpdated={lang === 'fr' ? '16 octobre 2026' : '16 October 2026'}
       intro={content.intro}
       sections={content.sections}
     />

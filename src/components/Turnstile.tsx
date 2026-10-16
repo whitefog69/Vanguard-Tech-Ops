@@ -58,7 +58,8 @@ const Turnstile = ({ lang, onVerify, onExpire }: TurnstileProps) => {
         if (cancelled || !containerRef.current) return;
         widgetId = turnstile.render(containerRef.current, {
           sitekey: SITE_KEY,
-          theme: 'dark',
+          // Match the site theme at render time; re-rendering on a toggle would reset the check.
+          theme: document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
           language: lang,
           callback: (token: string) => callbacks.current.onVerify(token),
           'expired-callback': () => callbacks.current.onExpire(),

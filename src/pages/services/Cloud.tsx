@@ -154,7 +154,7 @@ const CloudPage = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
@@ -197,7 +197,7 @@ const CloudPage = () => {
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
                 "p-6 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
-                "backdrop-blur-md bg-white/5 border border-white/5",
+                "backdrop-blur-md bg-on-surface/5 border border-on-surface/5 light:bg-surface-container-lowest/70",
                 "hover:border-primary/20 hover:shadow-[0_0_20px_rgba(0,71,171,0.05)]"
               )}
             >
@@ -316,7 +316,7 @@ const CloudPage = () => {
             viewport={{ once: true }}
             className={cn(
               "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center ",
-              "backdrop-blur-md bg-white/5 border border-white/10",
+              "backdrop-blur-md bg-on-surface/5 border border-on-surface/10",
               "neon-glow-cobalt shadow-[0_0_50px_rgba(0,71,171,0.1)]"
             )}
           >

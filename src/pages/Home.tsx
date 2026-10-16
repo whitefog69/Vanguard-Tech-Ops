@@ -30,7 +30,7 @@ const Home = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
         
         {/* Decorative 3D Glass elements */}
         <motion.div 
@@ -218,7 +218,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="glass-card p-10 md:p-12 text-center space-y-8 group hover:bg-surface-container-highest/10 transition-all duration-500 border border-white/5"
+                className="glass-card p-10 md:p-12 text-center space-y-8 group hover:bg-surface-container-highest/10 transition-all duration-500 border border-on-surface/5"
               >
                 <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-2xl bg-surface-container-high/50 p-[1px]">
                   <div className="w-full h-full bg-background rounded-2xl flex items-center justify-center">

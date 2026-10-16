@@ -7,6 +7,7 @@ import { siteData, PageData } from '@/src/lib/services-data';
 import { openCookieSettings } from '@/src/lib/consent';
 import { useLanguage } from '@/src/i18n/LanguageContext';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 
 const iconMap = {
   Server,
@@ -80,7 +81,7 @@ export const Navbar = () => {
           <img 
             src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`} 
             alt="Vanguard Tech Ops" 
-            className="h-12 sm:h-14 md:h-[72px] w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" 
+            className="h-12 sm:h-14 md:h-[72px] w-auto object-contain brightness-0 invert light:invert-0 opacity-90 hover:opacity-100 transition-opacity" 
           />
         </Link>
       </div>
@@ -216,6 +217,7 @@ export const Navbar = () => {
         <Link to="/contact" className="hidden lg:block bg-gradient-to-br from-primary-container to-primary text-on-primary px-6 py-2.5 font-headline text-sm font-bold uppercase tracking-widest active:scale-95 transition-transform shadow-[0_0_15px_rgba(0,71,171,0.4)] whitespace-nowrap">
           {t({ en: 'Consult Now', fr: 'Consultation' })}
         </Link>
+        <ThemeToggle />
         <LanguageSwitcher />
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -338,7 +340,7 @@ export const Footer = () => {
                   <div className="flex items-center justify-center w-5 h-5 scale-110">
                     {tech.icon}
                   </div>
-                  <span className="font-headline text-[8px] font-bold uppercase tracking-[0.2em] text-white whitespace-nowrap">
+                  <span className="font-headline text-[8px] font-bold uppercase tracking-[0.2em] text-on-surface whitespace-nowrap">
                     {tech.name}
                   </span>
                 </motion.div>
@@ -358,16 +360,16 @@ export const Footer = () => {
           <img
             src={`${import.meta.env.BASE_URL}assets/icons/website-logo.png`}
             alt="Vanguard Tech Ops"
-            className="h-24 w-auto object-contain brightness-0 invert opacity-80"
+            className="h-24 w-auto object-contain brightness-0 invert light:invert-0 opacity-80"
           />
-          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30">{t({ en: 'Vanguard Tech Ops. Technical Authority Secured.', fr: 'Vanguard Tech Ops. L’excellence technique, garantie.' })}</p>
+          <p className="font-body text-[10px] tracking-[0.1em] uppercase text-on-surface/30 light:text-on-surface/50">{t({ en: 'Vanguard Tech Ops. Technical Authority Secured.', fr: 'Vanguard Tech Ops. L’excellence technique, garantie.' })}</p>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 font-body text-xs text-on-surface/50">
           <Link to="/privacy" className="hover:text-primary transition-colors">{t({ en: 'Privacy Policy', fr: 'Politique de confidentialité' })}</Link>
           <Link to="/terms" className="hover:text-primary transition-colors">{t({ en: 'Terms & Conditions', fr: 'Conditions générales' })}</Link>
           <button onClick={openCookieSettings} className="hover:text-primary transition-colors">{t({ en: 'Cookie settings', fr: 'Paramètres des cookies' })}</button>
         </div>
-        <p className="font-body text-[11px] text-on-surface/30">© 2022 Vanguard Tech Ops. {t({ en: 'All rights reserved.', fr: 'Tous droits réservés.' })}</p>
+        <p className="font-body text-[11px] text-on-surface/30 light:text-on-surface/50">© 2022 Vanguard Tech Ops. {t({ en: 'All rights reserved.', fr: 'Tous droits réservés.' })}</p>
       </div>
     </footer>
   );

@@ -145,7 +145,7 @@ const WebDevPage = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
@@ -155,10 +155,10 @@ const WebDevPage = () => {
             viewport={{ once: true }}
           >
             <div className="inline-block p-3 md:p-4 rounded-full bg-secondary-fixed-dim/10 mb-6 md:mb-8 border border-secondary-fixed-dim/20 neon-glow-violet">
-              <Globe className="w-8 h-8 md:w-12 md:h-12 text-[#dcb8ff] animate-pulse" />
+              <Globe className="w-8 h-8 md:w-12 md:h-12 text-secondary animate-pulse" />
             </div>
             <h1 className="font-headline text-[clamp(2.25rem,1rem+5.5vw,6rem)] font-black tracking-tighter mb-6 uppercase">
-              {t({ en: 'Precision Web &', fr: 'Développement Web &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#dcb8ff] to-[#7701d0]" style={{textShadow: "0 0 20px rgba(220,184,255,0.1)"}}>{t({ en: 'Ecom Development', fr: 'E-commerce' })}</span>
+              {t({ en: 'Precision Web &', fr: 'Développement Web &' })} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-secondary-container" style={{textShadow: "0 0 20px rgba(220,184,255,0.1)"}}>{t({ en: 'Ecom Development', fr: 'E-commerce' })}</span>
             </h1>
             <p className="font-body text-on-surface-variant text-lg md:text-xl lg:text-2xl max-w-3xl mx-auto leading-relaxed tracking-wide mb-8 md:mb-12">
               {t({
@@ -187,7 +187,7 @@ const WebDevPage = () => {
               viewport={{ once: true, margin: "-50px" }}
               className={cn(
                 "p-6 md:p-10 rounded-2xl transition-all duration-500 hover:scale-[1.02] group",
-                "backdrop-blur-md bg-white/5 border border-white/5",
+                "backdrop-blur-md bg-on-surface/5 border border-on-surface/5 light:bg-surface-container-lowest/70",
                 "hover:border-secondary/20 hover:shadow-[0_0_20px_rgba(220,184,255,0.05)]"
               )}
             >
@@ -274,7 +274,7 @@ const WebDevPage = () => {
             viewport={{ once: true }}
             className={cn(
               "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
-              "backdrop-blur-md bg-white/5 border border-white/10 shadow-[0_0_50px_rgba(220,184,255,0.05)]"
+              "backdrop-blur-md bg-on-surface/5 border border-on-surface/10 shadow-[0_0_50px_rgba(220,184,255,0.05)]"
             )}
           >
             <InteractionIndicator />
@@ -315,7 +315,7 @@ const WebDevPage = () => {
                 ]
               }).map((text, i) => (
                 <li key={i} className="flex items-center gap-4 text-on-surface-variant">
-                  <div className="w-1.5 h-1.5 rounded-sm bg-[#dcb8ff] shadow-[0_0_5px_rgba(220,184,255,0.4)]"></div>
+                  <div className="w-1.5 h-1.5 rounded-sm bg-secondary shadow-[0_0_5px_rgba(220,184,255,0.4)]"></div>
                   <span className="font-body uppercase tracking-[0.1em] text-xs md:text-sm">{text}</span>
                 </li>
               ))}

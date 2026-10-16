@@ -120,7 +120,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-surface-container-lowest p-6 md:p-10 lg:p-12 relative border border-white/5 shadow-2xl rounded-sm self-start"
+          className="bg-surface-container-lowest p-6 md:p-10 lg:p-12 relative border border-on-surface/5 shadow-2xl rounded-sm self-start"
         >
           {formState === 'submitted' ? (
             <motion.div 
@@ -140,7 +140,7 @@ const Contact = () => {
               </p>
               <button 
                 onClick={() => setFormState('idle')}
-                className="mt-8 md:mt-10 font-headline text-[9px] uppercase tracking-[0.3em] text-primary hover:text-white transition-colors"
+                className="mt-8 md:mt-10 font-headline text-[9px] uppercase tracking-[0.3em] text-primary hover:text-on-surface transition-colors"
               >
                 {t({ en: '[ Reset Secure Channel ]', fr: '[ Nouvelle demande ]' })}
               </button>
@@ -163,7 +163,7 @@ const Contact = () => {
               </p>
               <button 
                 onClick={() => setFormState('idle')}
-                className="mt-8 md:mt-10 font-headline text-[9px] uppercase tracking-[0.3em] text-primary hover:text-white transition-colors"
+                className="mt-8 md:mt-10 font-headline text-[9px] uppercase tracking-[0.3em] text-primary hover:text-on-surface transition-colors"
               >
                 {t({ en: '[ Retry Protocol ]', fr: '[ Réessayer ]' })}
               </button>
@@ -276,7 +276,7 @@ const Contact = () => {
                   en: 'Your details are only used to reply to your request and are kept for 1 year. See our',
                   fr: 'Vos informations servent uniquement à répondre à votre demande et sont conservées 1 an. Voir notre'
                 })}{' '}
-                <Link to="/privacy" className="text-primary/80 underline underline-offset-2 hover:text-white">{t({ en: 'Privacy Policy', fr: 'politique de confidentialité' })}</Link>.
+                <Link to="/privacy" className="text-primary/80 underline underline-offset-2 hover:text-on-surface">{t({ en: 'Privacy Policy', fr: 'politique de confidentialité' })}</Link>.
               </p>
 
               <div className="flex items-center justify-center gap-2 pt-2 md:pt-4">
