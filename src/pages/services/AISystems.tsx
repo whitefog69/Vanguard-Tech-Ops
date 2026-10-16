@@ -143,7 +143,7 @@ const AISystemsPage = () => {
         })}
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-16">
+      <section data-theme="dark" className="relative min-h-screen bg-background flex items-center justify-center overflow-hidden py-16">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -157,7 +157,7 @@ const AISystemsPage = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
@@ -221,6 +221,7 @@ const AISystemsPage = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            data-theme="dark"
             className="w-full aspect-square md:aspect-video lg:aspect-square rounded-xl bg-[#0d0d0d] border border-secondary/20 shadow-2xl relative overflow-hidden group"
           >
             <InteractionIndicator />
@@ -303,6 +304,7 @@ const AISystemsPage = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            data-theme="dark"
             className={cn(
               "flex-1 w-full aspect-square md:aspect-video rounded-2xl overflow-hidden relative flex items-center justify-center",
               "backdrop-blur-md bg-on-surface/5 border border-on-surface/10",

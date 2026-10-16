@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /* Dark is the default theme. `light:` styles apply once <html data-theme="light"> is set
-   (by the header toggle, or by public/theme-init.js before the first paint). */
-@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+   (by the header toggle, or by public/theme-init.js before the first paint), except inside
+   data-theme="dark" areas: media (hero videos, photos, 3D viewers) always keeps the dark styling. */
+@custom-variant light (&:where(:is([data-theme=light], [data-theme=light] *):not([data-theme=dark], [data-theme=dark] *)));
 
 @theme {
   --font-headline: "Space Grotesk", sans-serif;
@@ -89,6 +90,38 @@
 
   --color-outline: #5f6372;
   --color-outline-variant: #a9adbc;
+}
+
+/* Media areas keep the dark tokens from @theme even when the page is light. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: --theme(--color-background inline);
+  --color-on-background: --theme(--color-on-background inline);
+  --color-primary: --theme(--color-primary inline);
+  --color-on-primary: --theme(--color-on-primary inline);
+  --color-primary-container: --theme(--color-primary-container inline);
+  --color-on-primary-container: --theme(--color-on-primary-container inline);
+  --color-primary-fixed-dim: --theme(--color-primary-fixed-dim inline);
+  --color-secondary: --theme(--color-secondary inline);
+  --color-on-secondary: --theme(--color-on-secondary inline);
+  --color-secondary-container: --theme(--color-secondary-container inline);
+  --color-on-secondary-container: --theme(--color-on-secondary-container inline);
+  --color-secondary-fixed-dim: --theme(--color-secondary-fixed-dim inline);
+  --color-tertiary: --theme(--color-tertiary inline);
+  --color-on-tertiary: --theme(--color-on-tertiary inline);
+  --color-tertiary-container: --theme(--color-tertiary-container inline);
+  --color-on-tertiary-container: --theme(--color-on-tertiary-container inline);
+  --color-surface: --theme(--color-surface inline);
+  --color-on-surface: --theme(--color-on-surface inline);
+  --color-surface-variant: --theme(--color-surface-variant inline);
+  --color-on-surface-variant: --theme(--color-on-surface-variant inline);
+  --color-surface-container-lowest: --theme(--color-surface-container-lowest inline);
+  --color-surface-container-low: --theme(--color-surface-container-low inline);
+  --color-surface-container: --theme(--color-surface-container inline);
+  --color-surface-container-high: --theme(--color-surface-container-high inline);
+  --color-surface-container-highest: --theme(--color-surface-container-highest inline);
+  --color-outline: --theme(--color-outline inline);
+  --color-outline-variant: --theme(--color-outline-variant inline);
 }
 
 @layer utilities {

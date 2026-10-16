@@ -17,7 +17,7 @@ const Services = () => {
         })}
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-16">
+      <section data-theme="dark" className="relative min-h-screen bg-background flex items-center justify-center overflow-hidden py-16">
         {/* Background Video */}
         <video 
           autoPlay 
@@ -31,7 +31,7 @@ const Services = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-8 text-center pt-20">
           <motion.div
@@ -90,7 +90,7 @@ const Services = () => {
       <section className="px-6 md:px-12 py-16 md:py-24 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* 1. Virtualization & Cloud */}
-          <Link to="/services/cloud" className="lg:col-span-8">
+          <Link to="/services/cloud" data-theme="dark" className="lg:col-span-8 bg-background">
             <motion.div 
               whileHover={{ scale: 1.01 }}
               className="glass-card p-6 sm:p-8 xl:p-12 flex flex-col justify-between group hover:border-primary/30 transition-all neon-glow-cobalt overflow-hidden relative h-full"
@@ -99,7 +99,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/cloud/cloud-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 light:opacity-20 light:group-hover:opacity-35 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
               </div>
@@ -150,7 +150,7 @@ const Services = () => {
           </Link>
 
           {/* 2. Precision Web & Ecom Development */}
-          <Link to="/services/web-dev" className="lg:col-span-4">
+          <Link to="/services/web-dev" data-theme="dark" className="lg:col-span-4 bg-background">
             <motion.div 
               whileHover={{ scale: 1.01 }}
               className="bg-surface-container-low p-6 sm:p-8 xl:p-12 flex flex-col justify-between border border-outline-variant/10 neon-glow-violet group hover:border-secondary-container/40 transition-all overflow-hidden relative h-full"
@@ -159,7 +159,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/web/web-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 light:opacity-20 light:group-hover:opacity-35 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-surface-container-low/80 via-surface-container-low/20 to-transparent"></div>
               </div>
@@ -198,7 +198,7 @@ const Services = () => {
           </Link>
 
           {/* 3. AI & Automation */}
-          <Link to="/services/ai-systems" className="lg:col-span-5">
+          <Link to="/services/ai-systems" data-theme="dark" className="lg:col-span-5 bg-background">
             <motion.div 
               whileHover={{ scale: 1.01 }}
               className="glass-card p-6 sm:p-8 xl:p-12 relative group border-outline-variant/5 neon-glow-cobalt overflow-hidden h-full"
@@ -207,7 +207,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/ai/ai-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 light:opacity-20 light:group-hover:opacity-35 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
               </div>
@@ -241,7 +241,7 @@ const Services = () => {
           </Link>
 
           {/* 4. Shopify Integrations & App Development */}
-          <Link to="/services/shopify" className="lg:col-span-7">
+          <Link to="/services/shopify" data-theme="dark" className="lg:col-span-7 bg-background">
             <motion.div 
               whileHover={{ scale: 1.01 }}
               className="bg-surface-container-low p-6 sm:p-8 xl:p-12 relative overflow-hidden group border border-outline-variant/10 neon-glow-cobalt transition-all h-full"
@@ -250,7 +250,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/shopify/shopify-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 light:opacity-15 light:group-hover:opacity-30 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-surface-container-low/90 via-surface-container-low/40 to-transparent"></div>
               </div>
@@ -284,7 +284,7 @@ const Services = () => {
           </Link>
 
           {/* 5. Graphic & Web Design */}
-          <Link to="/services/design" className="lg:col-span-12">
+          <Link to="/services/design" data-theme="dark" className="lg:col-span-12 bg-background">
             <motion.div 
               whileHover={{ scale: 1.01 }}
               className="glass-card p-6 sm:p-8 xl:p-12 relative group border-outline-variant/5 neon-glow-violet overflow-hidden"
@@ -293,7 +293,7 @@ const Services = () => {
                 <img 
                   src={`${import.meta.env.BASE_URL}assets/services/design/design-bg.png`} 
                   alt=""
-                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 light:opacity-15 light:group-hover:opacity-30 transition-opacity duration-700"
+                  className="w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent"></div>
               </div>

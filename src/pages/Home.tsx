@@ -17,7 +17,7 @@ const Home = () => {
         })}
       />
       {/* Unified Hero & CTA Section */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center py-16 px-6 overflow-hidden">
+      <section data-theme="dark" className="relative min-h-screen bg-background flex flex-col items-center justify-center py-16 px-6 overflow-hidden">
         {/* Background Video */}
         <video 
           loop 
@@ -30,7 +30,7 @@ const Home = () => {
         </video>
         
         {/* Overlay for Depth and Readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background light:from-background/70 light:via-background/80 z-[1]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background z-[1]"></div>
         
         {/* Decorative 3D Glass elements */}
         <motion.div 
