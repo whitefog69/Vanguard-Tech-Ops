@@ -167,7 +167,8 @@ const Contact = () => {
                     <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant/40" />
                     <input 
                       required
-                      type="text" 
+                      type="text"
+                      maxLength={100}
                       className={cn(inputClasses, "pl-10 md:pl-12")}
                       placeholder={t({ en: 'e.g. John Doe', fr: 'ex. Jean Dupont' })}
                       value={formData.name}
@@ -181,7 +182,8 @@ const Contact = () => {
                     <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-on-surface-variant/40" />
                     <input 
                       required
-                      type="email" 
+                      type="email"
+                      maxLength={254}
                       className={cn(inputClasses, "pl-10 md:pl-12")}
                       placeholder={t({ en: 'name@domain.com', fr: 'nom@domaine.fr' })}
                       value={formData.email}
@@ -214,6 +216,7 @@ const Contact = () => {
                 <textarea 
                   required
                   rows={4}
+                  maxLength={5000}
                   className={cn(inputClasses, "resize-none")}
                   placeholder={t({ en: 'Provide project technical requirements...', fr: 'Décrivez votre projet et vos besoins techniques…' })}
                   value={formData.message}
