@@ -4,11 +4,13 @@ import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, Aler
 import { cn } from '@/src/lib/utils';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Turnstile from '../components/Turnstile';
 import { useLanguage } from '@/src/i18n/LanguageContext';
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
+  const [captchaToken, setCaptchaToken] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,6 +29,7 @@ const Contact = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!captchaToken) return;
     setFormState('submitting');
     
     try {
@@ -35,7 +38,7 @@ const Contact = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, captchaToken }),
       });
       if (!response.ok) {
         throw new Error('Failed to send email');
@@ -218,8 +221,10 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <button 
-                disabled={formState === 'submitting'}
+              <Turnstile lang={lang} onVerify={setCaptchaToken} onExpire={() => setCaptchaToken('')} />
+
+              <button
+                disabled={formState === 'submitting' || !captchaToken}
                 className="w-full bg-primary text-on-primary font-headline font-bold py-4 md:py-5 uppercase tracking-[0.2em] md:tracking-[0.3em] text-xs md:text-sm flex items-center justify-center gap-3 hover:bg-primary/90 transition-all active:scale-[0.98] shadow-md shadow-primary/20 disabled:opacity-50"
               >
                 {formState === 'submitting' ? (

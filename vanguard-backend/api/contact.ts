@@ -4,6 +4,30 @@ import { trigger_automation_email, send_user_confirmation } from '../src/lib/ema
 // Simple validator for email format
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
+// Checks the Cloudflare Turnstile token the contact form sends, so bots can't post inquiries directly.
+const verifyCaptcha = async (token: string, ip?: string) => {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) {
+    console.error('TURNSTILE_SECRET_KEY is not set; rejecting inquiry');
+    return false;
+  }
+
+  const body = new URLSearchParams({ secret, response: token });
+  if (ip) body.append('remoteip', ip);
+
+  try {
+    const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body,
+    });
+    const data = (await response.json()) as { success: boolean };
+    return data.success === true;
+  } catch (error) {
+    console.error('Captcha verification failed:', error);
+    return false;
+  }
+};
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const allowedOrigins = ['https://whitefog69.github.io', 'https://vanguardtechops.com'];
   const origin = req.headers.origin;
@@ -26,10 +50,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { name, email, service, message } = req.body ?? {};
+  const { name, email, service, message, captchaToken } = req.body ?? {};
 
   if (!name || !email || !service || !message) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  const forwardedFor = req.headers['x-forwarded-for'];
+  const ip = (Array.isArray(forwardedFor) ? forwardedFor[0] : forwardedFor)?.split(',')[0].trim();
+  if (typeof captchaToken !== 'string' || !captchaToken || !(await verifyCaptcha(captchaToken, ip))) {
+    return res.status(403).json({ error: 'Captcha verification failed' });
   }
 
   if (!isValidEmail(email)) {
