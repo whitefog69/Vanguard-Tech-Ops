@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Send, User, Mail, MessageSquare, Phone, ChevronDown, CheckCircle2, AlertCircle } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
@@ -7,10 +7,16 @@ import SEO from '../components/SEO';
 import Turnstile from '../components/Turnstile';
 import { useLanguage } from '@/src/i18n/LanguageContext';
 
+// The backend drops anything sent within a few seconds of the bot check, so never send sooner than this.
+const MIN_FILL_MS = 3000;
+
 const Contact = () => {
   const { t, lang } = useLanguage();
   const [formState, setFormState] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
   const [captchaToken, setCaptchaToken] = useState('');
+  const verifiedAt = useRef(0);
+  // Honeypot: hidden from people, so only bots fill it in.
+  const [hpField, setHpField] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -31,14 +37,18 @@ const Contact = () => {
     e.preventDefault();
     if (!captchaToken) return;
     setFormState('submitting');
-    
+
     try {
+      const wait = MIN_FILL_MS - (Date.now() - verifiedAt.current);
+      if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
+
+
       const response = await fetch('https://vanguard-backend.vercel.app/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, captchaToken }),
+        body: JSON.stringify({ ...formData, captchaToken, hpField }),
       });
       if (!response.ok) {
         throw new Error('Failed to send email');
@@ -224,7 +234,28 @@ const Contact = () => {
                 ></textarea>
               </div>
 
-              <Turnstile lang={lang} onVerify={setCaptchaToken} onExpire={() => setCaptchaToken('')} />
+              <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, overflow: 'hidden' }}>
+                <label>
+                  Leave this field empty
+                  <input
+                    type="text"
+                    name="hp_field"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={hpField}
+                    onChange={(e) => setHpField(e.target.value)}
+                  />
+                </label>
+              </div>
+
+              <Turnstile
+                lang={lang}
+                onVerify={(token) => {
+                  verifiedAt.current = Date.now();
+                  setCaptchaToken(token);
+                }}
+                onExpire={() => setCaptchaToken('')}
+              />
 
               <button
                 disabled={formState === 'submitting' || !captchaToken}
