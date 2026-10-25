@@ -21,7 +21,9 @@ const transporter = nodemailer.createTransport({
   secure: true,
   auth: {
     user: process.env.ZOHO_USER,
-    pass: process.env.ZOHO_APP_PASSWORD, // Updated to use the requested ZOHO_APP_PASSWORD
+    // Accept either name so the function works regardless of how the secret is
+    // labelled in the Vercel dashboard. Standardize on ZOHO_APP_PASSWORD.
+    pass: process.env.ZOHO_APP_PASSWORD || process.env.ZOHO_PASS,
   },
 });
 
@@ -76,7 +78,7 @@ export async function send_user_confirmation(
 ): Promise<{ success: boolean; error?: string }> {
   try {
     const info = await transporter.sendMail({
-      from: `"VanguardTechOps" <${process.env.ZOHO_NOREPLY_EMAIL}>`,
+      from: `"VanguardTechOps" <${process.env.ZOHO_NOREPLY_EMAIL || process.env.ZOHO_USER}>`,
       to: userEmail,
       subject: `We received your inquiry, ${userName}!`,
       html: `

@@ -2,8 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import type { Lang } from '@/src/i18n/LanguageContext';
 
 // Cloudflare Turnstile bot check. The site key is public; set VITE_TURNSTILE_SITE_KEY at build time.
-// Without it we fall back to Cloudflare's always-pass test key so local dev keeps working.
-const SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
+// In dev we fall back to Cloudflare's always-pass test key so local dev keeps working. In
+// production the build fails if the key is missing (see vite.config.ts), so the fallback below
+// is dev-only — a prod build will always have a real key, and never the always-pass test key.
+const SITE_KEY =
+  import.meta.env.VITE_TURNSTILE_SITE_KEY ||
+  (import.meta.env.DEV ? '1x00000000000000000000AA' : '');
 const SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
 
 interface TurnstileApi {
