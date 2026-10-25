@@ -7,7 +7,6 @@
     "dev": "vite --port=3000 --host=0.0.0.0",
     "build": "vite build && node scripts/spa-routes.mjs",
     "preview": "vite preview",
-    "start": "tsx server.ts",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"
   },
@@ -18,14 +17,9 @@
     "@react-three/fiber": "^9.5.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
-    "body-parser": "^2.2.2",
     "clsx": "^2.1.1",
-    "cors": "^2.8.6",
-    "dotenv": "^17.4.2",
-    "express": "^5.2.1",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
-    "nodemailer": "^10.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet-async": "^3.0.0",
@@ -36,25 +30,12 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.2.4",
-    "@types/dotenv": "^6.1.1",
     "@types/node": "^22.14.0",
-    "@types/nodemailer": "^7.0.2",
     "@types/three": "^0.183.1",
-    "@vercel/node": "^27.0.2",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.12",
     "tailwindcss": "^4.2.4",
-    "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
-  },
-  "overrides": {
-    "@vercel/node": {
-      "path-to-regexp": "6.3.0",
-      "undici": "6.29.1",
-      "@vercel/static-config": {
-        "ajv": "8.20.0"
-      }
-    }
   }
 }
