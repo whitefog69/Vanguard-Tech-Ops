@@ -109,7 +109,7 @@ const Contact = () => {
               </div>
               <div className="text-center lg:text-left">
                 <h4 className="font-headline text-[10px] uppercase tracking-widest text-on-surface font-bold mb-1">{t({ en: 'Secure Mesh (Voice)', fr: 'Ligne sécurisée (voix)' })}</h4>
-                <p className="font-mono text-xs md:text-sm text-secondary/60">Node Relay: +1 (555) 010-ARCH</p>
+                <p className="font-mono text-xs md:text-sm text-secondary/60">Node Relay: +33 7 53 27 33 46</p>
               </div>
             </div>
           </div>
