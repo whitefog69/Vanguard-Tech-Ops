@@ -25,7 +25,7 @@
     "express": "^5.2.1",
     "lucide-react": "^0.546.0",
     "motion": "^12.23.24",
-    "nodemailer": "^8.0.6",
+    "nodemailer": "^10.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet-async": "^3.0.0",
@@ -38,14 +38,23 @@
     "@tailwindcss/postcss": "^4.2.4",
     "@types/dotenv": "^6.1.1",
     "@types/node": "^22.14.0",
-    "@types/nodemailer": "^8.0.0",
+    "@types/nodemailer": "^7.0.2",
     "@types/three": "^0.183.1",
-    "@vercel/node": "^5.7.13",
+    "@vercel/node": "^27.0.2",
     "autoprefixer": "^10.5.0",
     "postcss": "^8.5.12",
     "tailwindcss": "^4.2.4",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
     "vite": "^6.2.0"
+  },
+  "overrides": {
+    "@vercel/node": {
+      "path-to-regexp": "6.3.0",
+      "undici": "6.29.1",
+      "@vercel/static-config": {
+        "ajv": "8.20.0"
+      }
+    }
   }
 }

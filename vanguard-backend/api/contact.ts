@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { trigger_automation_email, send_user_confirmation } from '../src/lib/emailService';
+import { trigger_automation_email, send_user_confirmation, escapeHtml } from '../src/lib/emailService';
 
 // Simple validator for email format
 const isValidEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -31,12 +31,12 @@ const verifyCaptcha = async (token: string, ip?: string) => {
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   const allowedOrigins = ['https://whitefog69.github.io', 'https://vanguardtechops.com'];
   const origin = req.headers.origin;
-  
+
+  // Only reflect an allow-listed origin. No wildcard fallback — an unknown
+  // origin simply gets no CORS header, so the browser blocks the cross-site read.
   if (origin && allowedOrigins.includes(origin)) {
     res.setHeader('Access-Control-Allow-Origin', origin);
-  } else {
-    // Fallback if origin is not in list but we need to pass preflight
-    res.setHeader('Access-Control-Allow-Origin', '*'); 
+    res.setHeader('Vary', 'Origin');
   }
 
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -50,10 +50,25 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { name, email, service, message, captchaToken } = req.body ?? {};
+  const { name, email, service, message, captchaToken, hpField } = req.body ?? {};
+
+  // Honeypot: the field is hidden from real users, so any value means a bot.
+  // Respond 200 so the bot can't tell it was filtered.
+  if (hpField) {
+    return res.status(200).json({ message: 'Email sent successfully' });
+  }
 
   if (!name || !email || !service || !message) {
     return res.status(400).json({ error: 'Missing required fields' });
+  }
+
+  // Reject oversized payloads to limit abuse / resource exhaustion.
+  if (
+    [name, email, service, message].some(
+      (f) => typeof f !== 'string' || f.length > 5000
+    )
+  ) {
+    return res.status(400).json({ error: 'Invalid field length' });
   }
 
   const forwardedFor = req.headers['x-forwarded-for'];
@@ -74,12 +89,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         <h2 style="color:#000;border-bottom:1px solid #eee;padding-bottom:10px">
           New Website Inquiry
         </h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Reply-to Email:</strong> <a href="mailto:${email}">${email}</a></p>
-        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Reply-to Email:</strong> <a href="mailto:${encodeURIComponent(email)}">${escapeHtml(email)}</a></p>
+        <p><strong>Service:</strong> ${escapeHtml(service)}</p>
         <p><strong>Message:</strong></p>
         <div style="background:#f9f9f9;padding:15px;border-radius:4px;border:1px solid #eee">
-          ${message.replace(/\n/g, '<br>')}
+          ${escapeHtml(message).replace(/\n/g, '<br>')}
         </div>
         <hr style="border:0;border-top:1px solid #eee;margin:20px 0" />
         <p style="font-size:12px;color:#999">Sent from vanguardtechops.com inquiry portal.</p>

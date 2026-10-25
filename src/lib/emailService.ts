@@ -3,6 +3,16 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+/** Escapes HTML-significant characters to prevent injection in email bodies. */
+export function escapeHtml(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 const transporter = nodemailer.createTransport({
   host: 'smtppro.zoho.com',
   port: 465,
@@ -20,11 +30,11 @@ export async function send_user_confirmation(recipientEmail: string, name: strin
   const html_body = `
     <div style="font-family: sans-serif; color: #333; max-width: 600px;">
       <h2>Thank you for contacting Vanguard Tech Ops</h2>
-      <p>Hi ${name},</p>
-      <p>We have received your inquiry regarding <strong>${service}</strong> and our team is currently reviewing your message.</p>
+      <p>Hi ${escapeHtml(name)},</p>
+      <p>We have received your inquiry regarding <strong>${escapeHtml(service)}</strong> and our team is currently reviewing your message.</p>
       <p>We typically respond within 24-48 hours. Here is a summary of what you sent us:</p>
       <blockquote style="background: #f9f9f9; padding: 10px; border-left: 4px solid #6366f1;">
-        ${message}
+        ${escapeHtml(message).replace(/\n/g, '<br>')}
       </blockquote>
       <p>We look forward to connecting with you.</p>
       <br>

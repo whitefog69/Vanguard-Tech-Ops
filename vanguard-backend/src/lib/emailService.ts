@@ -2,6 +2,19 @@ import nodemailer from 'nodemailer';
 
 // NOTE: No dotenv import — Vercel injects environment variables automatically
 
+/**
+ * Escapes HTML-significant characters so user-supplied values can be safely
+ * embedded in an HTML email body without allowing markup/script injection.
+ */
+export function escapeHtml(value: unknown): string {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 const transporter = nodemailer.createTransport({
   host: 'smtppro.zoho.com',
   port: 465,
@@ -30,8 +43,13 @@ export async function trigger_automation_email(
 ): Promise<{ success: boolean; messageId?: string; error?: string }> {
   try {
     const info = await transporter.sendMail({
-      from: `"${senderName} via VanguardTechOps" <${process.env.ZOHO_USER}>`,
-      replyTo: `${replyTo}`,
+      // Object form lets nodemailer encode the display name safely, preventing
+      // header injection via a crafted sender name.
+      from: {
+        name: `${senderName ?? 'Visitor'} via VanguardTechOps`,
+        address: process.env.ZOHO_USER ?? '',
+      },
+      replyTo: replyTo || undefined,
       to: recipient,
       subject: subject,
       html: html_body,
@@ -62,12 +80,12 @@ export async function send_user_confirmation(
       to: userEmail,
       subject: `We received your inquiry, ${userName}!`,
       html: `
-        <p>Hi ${userName},</p>
-        <p>Thank you for reaching out to VanguardTechOps. We have received your inquiry regarding <strong>${service}</strong> and will get back to you within 24-48 hours.</p>
+        <p>Hi ${escapeHtml(userName)},</p>
+        <p>Thank you for reaching out to VanguardTechOps. We have received your inquiry regarding <strong>${escapeHtml(service)}</strong> and will get back to you within 24-48 hours.</p>
         <p>Here's a summary of what you submitted:</p>
         <ul>
-          <li><strong>Service:</strong> ${service}</li>
-          <li><strong>Message:</strong> ${message}</li>
+          <li><strong>Service:</strong> ${escapeHtml(service)}</li>
+          <li><strong>Message:</strong> ${escapeHtml(message).replace(/\n/g, '<br>')}</li>
         </ul>
         <p>Best regards,<br/>VanguardTechOps Team</p>
         <p style="font-size:11px;color:gray;">This is an automated confirmation, please do not reply to this email.</p>

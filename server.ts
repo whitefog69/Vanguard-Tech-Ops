@@ -4,15 +4,21 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 import express from 'express';
 import cors from 'cors';
-import { trigger_automation_email, send_user_confirmation } from './src/lib/emailService.ts';
+import { trigger_automation_email, send_user_confirmation, escapeHtml } from './src/lib/emailService.ts';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Restrict cross-origin requests to the site's own origins (overridable via env).
+const allowedOrigins = (process.env.ALLOWED_ORIGINS || 'https://vanguardtechops.com,https://whitefog69.github.io')
+  .split(',')
+  .map((o) => o.trim())
+  .filter(Boolean);
+
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(cors({ origin: allowedOrigins }));
+app.use(express.json({ limit: '100kb' }));
 
 // API route
 app.post('/api/contact', async (req, res) => {
@@ -30,12 +36,12 @@ app.post('/api/contact', async (req, res) => {
     `
       <div style="max-width: 600px; margin: 0 auto; font-family: sans-serif; color: #333;">
         <h2 style="color: #000; border-bottom: 1px solid #eee; padding-bottom: 10px;">New Website Inquiry</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Service:</strong> ${service}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+        <p><strong>Service:</strong> ${escapeHtml(service)}</p>
         <p><strong>Message:</strong></p>
         <div style="background: #f9f9f9; padding: 15px; border-radius: 4px; border: 1px solid #eee;">
-          ${message.replace(/\n/g, '<br>')}
+          ${escapeHtml(message).replace(/\n/g, '<br>')}
         </div>
         <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;" />
         <p style="font-size: 12px; color: #999;">Sent from vanguardtechops.com inquiry portal.</p>
