@@ -1,20 +1,18 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Vanguard Tech Ops
 
-# Run and deploy your AI Studio app
+Source for [vanguardtechops.com](https://vanguardtechops.com), built with React 19, Vite 6, React Router 7 and Tailwind CSS 4.
 
-This contains everything you need to run your app locally.
+## Run locally
 
-View your app in AI Studio: https://ai.studio/apps/e7b0d1fa-61ed-452f-8e54-7bf28816465a
+1. `npm install`
+2. `npm run dev` (http://localhost:3000)
 
-## Run Locally
+The dev server uses Cloudflare's Turnstile test key when no site key is set.
 
-**Prerequisites:**  Node.js
+## Deploy
 
+Every push to `main` is built by GitHub Actions and published to GitHub Pages. The workflow reads the public Turnstile site key from the `TURNSTILE_SITE_KEY` repository variable, and the build fails if it is missing.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## Backend
+
+The contact form posts to a Vercel function at `https://vanguard-backend.vercel.app/api/contact`. Its code lives only in the private `whitefog69/Vanguard-Backend` repo.

@@ -13,7 +13,6 @@ This workspace contains the source code and assets for the "Vanguard Tech Ops" p
     - `App.tsx`: Routing configuration using React Router 7.
     - `index.css`: Global styles and Tailwind 4 theme configuration.
   - `public/`: Static assets for the website.
-  - `vanguard-backend/`: Separate Express/Vercel backend source code.
 - `*.mp4`, `*.png`: Source media assets (located in the root directory for reference/source).
 
 ## Core Technologies
@@ -42,7 +41,10 @@ All commands should be run from within the root directory.
 Vanguard Tech Ops follows a **Zero-Secret Frontend** architecture. No sensitive API keys or credentials are injected into the client-side bundle. 
 
 ### Inbound Inquiry Protocol (Contact Form)
-The mailing system is currently in a "Local Capture" state. Submissions are processed on the frontend only; SMTP integration is pending for a future deployment phase.
+The form in `src/pages/Contact.tsx` posts to a Vercel function (`https://vanguard-backend.vercel.app/api/contact`), which verifies Cloudflare Turnstile and sends mail through Zoho SMTP. The backend code lives only in the private `whitefog69/Vanguard-Backend` repo.
+
+### Deployment
+The site is built by GitHub Actions and published to GitHub Pages on every push to `main`. Production builds fail unless `VITE_TURNSTILE_SITE_KEY` is set, which the workflow reads from the `TURNSTILE_SITE_KEY` repository variable.
 
 ### Technical Hardening
 - **CSP (Content Security Policy)**: Enforced via meta tags to prevent XSS and data exfiltration.
@@ -64,4 +66,4 @@ The mailing system is currently in a "Local Capture" state. Submissions are proc
 - `src/components/Layout.tsx`: Shared layout, Navbar with services dropdown, and Footer.
 - `package.json`: Project dependencies and scripts.
 - `vite.config.ts`: Vite configuration including Tailwind integration.
-- `vercel.json`: Frontend deployment configuration for Vercel.
+- `.github/workflows/deploy.yml`: GitHub Pages build and deployment.
